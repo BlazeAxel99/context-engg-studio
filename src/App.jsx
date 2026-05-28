@@ -5,10 +5,28 @@ import BudgetOptimizer from './components/BudgetOptimizer';
 import CompressionStudio from './components/CompressionStudio';
 import AgentPropagation from './components/AgentPropagation';
 import ObservabilityDashboard from './components/ObservabilityDashboard';
-import { Network, Key, ShieldAlert, CheckCircle, ArrowRight, Eye, Play } from 'lucide-react';
+import { Network, Key, ShieldAlert, CheckCircle, ArrowRight, Eye, Play, Sun, Moon } from 'lucide-react';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('maturity'); // 'maturity', 'decomp', 'budget', 'compress', 'agents', 'observe'
+  
+  // Theme state switcher
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('theme') || 'dark';
+  });
+
+  useEffect(() => {
+    if (theme === 'light') {
+      document.documentElement.classList.add('light-theme');
+    } else {
+      document.documentElement.classList.remove('light-theme');
+    }
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+  };
   
   // API Key management
   const [apiKey, setApiKey] = useState(() => {
@@ -82,13 +100,16 @@ export default function App() {
   ];
 
   return (
-    <div className="min-h-screen text-slate-100 font-sans relative overflow-hidden"
+    <div className="min-h-screen font-sans relative overflow-hidden"
       style={{
-        backgroundColor: '#0f1117',
-        backgroundImage: 'radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.1) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(34, 211, 238, 0.08) 0, transparent 50%)',
+        backgroundColor: 'var(--bg-dark)',
+        backgroundImage: theme === 'dark' 
+          ? 'radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.1) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(34, 211, 238, 0.08) 0, transparent 50%)'
+          : 'radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.05) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(34, 211, 238, 0.04) 0, transparent 50%)',
         minHeight: '100vh',
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        color: 'var(--text-primary)'
       }}
     >
       
@@ -97,7 +118,7 @@ export default function App() {
       <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-cyan-500/10 blur-[150px] pointer-events-none rounded-full" />
 
       {/* TOP HEADER & NAVIGATION */}
-      <header className="border-b border-slate-800/80 bg-slate-950/40 backdrop-blur-md z-30" style={{ borderBottom: '1px solid rgba(255,255,255,0.08)', backgroundColor: 'rgba(5, 7, 12, 0.4)' }}>
+      <header className="border-b backdrop-blur-md z-30" style={{ borderBottom: '1px solid var(--panel-border)', backgroundColor: theme === 'dark' ? 'rgba(5, 7, 12, 0.4)' : 'rgba(255, 255, 255, 0.4)' }}>
         <div className="max-w-[1920px] mx-auto px-6 py-4 flex flex-wrap justify-between items-center gap-4" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '16px' }}>
           
           {/* Logo Brandmark */}
@@ -113,61 +134,84 @@ export default function App() {
               <Network className="w-5 h-5 text-white" />
             </div>
             <div className="flex flex-col" style={{ display: 'flex', flexDirection: 'column' }}>
-              <span className="font-bold text-sm tracking-wide text-white uppercase" style={{ fontSize: '0.88rem', fontWeight: 'bold', color: '#fff', letterSpacing: '0.5px' }}>
+              <span className="font-bold text-sm tracking-wide uppercase" style={{ fontSize: '0.88rem', fontWeight: 'bold', color: 'var(--text-primary)', letterSpacing: '0.5px' }}>
                 Context Engineering Studio
               </span>
-              <span className="text-[9px] font-mono text-slate-500" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.62rem', color: '#6b7280' }}>
+              <span className="text-[9px] font-mono" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.62rem', color: 'var(--text-muted)' }}>
                  discipline // presentation-platform
               </span>
             </div>
           </div>
 
-          {/* Module tabs */}
-          <nav className="flex items-center gap-1 bg-slate-950/80 p-1 border border-slate-800/80 rounded-xl"
-            style={{
-              display: 'flex', gap: '4px', padding: '4px',
-              backgroundColor: 'rgba(5, 7, 12, 0.8)',
-              border: '1px solid rgba(255, 255, 255, 0.08)',
-              borderRadius: '12px'
-            }}
-          >
-            {tabs.map((tab) => {
-              const isActive = activeTab === tab.id;
-              const isCompleted = completedTabs[tab.id];
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => navigateToTab(tab.id)}
-                  className={`px-4 py-2 text-xs font-bold font-mono tracking-wide rounded-lg flex items-center gap-1.5 transition-all duration-300 ${
-                    isActive
-                      ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
-                      : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/40'
-                  }`}
-                  style={{
-                    padding: '8px 14px',
-                    fontSize: '0.75rem',
-                    fontFamily: 'JetBrains Mono',
-                    fontWeight: 700,
-                    borderRadius: '8px',
-                    border: 'none',
-                    cursor: 'pointer',
-                    transition: 'all 0.2s',
-                    backgroundColor: isActive ? '#6366f1' : 'transparent',
-                    color: isActive ? '#fff' : '#9ca3af',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px'
-                  }}
-                >
-                  <span>{tab.label}</span>
-                  {isCompleted && (
-                    <CheckCircle className="w-3.5 h-3.5 text-cyan-400 fill-cyan-400/10" style={{ color: '#22d3ee' }} />
-                  )}
-                </button>
-              );
-            })}
-          </nav>
+          {/* Module tabs and Theme Toggle Row */}
+          <div className="flex items-center gap-4" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+            <nav className="flex items-center gap-1 p-1 border rounded-xl"
+              style={{
+                display: 'flex', gap: '4px', padding: '4px',
+                backgroundColor: theme === 'dark' ? 'rgba(5, 7, 12, 0.8)' : 'rgba(255, 255, 255, 0.8)',
+                border: '1px solid var(--panel-border)',
+                borderRadius: '12px'
+              }}
+            >
+              {tabs.map((tab) => {
+                const isActive = activeTab === tab.id;
+                const isCompleted = completedTabs[tab.id];
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => navigateToTab(tab.id)}
+                    className={`px-4 py-2 text-xs font-bold font-mono tracking-wide rounded-lg flex items-center gap-1.5 transition-all duration-300 ${
+                      isActive
+                        ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
+                        : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/40'
+                    }`}
+                    style={{
+                      padding: '8px 14px',
+                      fontSize: '0.75rem',
+                      fontFamily: 'JetBrains Mono',
+                      fontWeight: 700,
+                      borderRadius: '8px',
+                      border: 'none',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s',
+                      backgroundColor: isActive ? '#6366f1' : 'transparent',
+                      color: isActive ? '#fff' : 'var(--text-secondary)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px'
+                    }}
+                  >
+                    <span>{tab.label}</span>
+                    {isCompleted && (
+                      <CheckCircle className="w-3.5 h-3.5 text-cyan-400 fill-cyan-400/10" style={{ color: '#22d3ee' }} />
+                    )}
+                  </button>
+                );
+              })}
+            </nav>
 
+            {/* LIGHT/DARK MODE TOGGLE BUTTON */}
+            <button
+              onClick={toggleTheme}
+              className="w-9 h-9 rounded-xl border flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105"
+              style={{
+                width: '36px', height: '36px', borderRadius: '10px',
+                backgroundColor: theme === 'dark' ? 'rgba(5, 7, 12, 0.8)' : 'rgba(255, 255, 255, 0.8)',
+                border: '1px solid var(--panel-border)',
+                color: 'var(--text-secondary)',
+                cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
+              }}
+              title={theme === 'dark' ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            >
+              {theme === 'dark' ? (
+                <Sun className="w-4 h-4 text-amber-400 animate-spin-slow" />
+              ) : (
+                <Moon className="w-4 h-4 text-indigo-600" />
+              )}
+            </button>
+          </div>
         </div>
       </header>
 

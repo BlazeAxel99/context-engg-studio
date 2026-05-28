@@ -26,6 +26,7 @@ export default function BudgetOptimizer({ onOptimizerSelect }) {
   const [mode, setMode] = useState('manual'); // 'manual', 'greedy', 'optimized'
   const [animating, setAnimating] = useState(false);
   const [comparison, setComparison] = useState(null);
+  const [activeSourceFilter, setActiveSourceFilter] = useState('All');
   
   // Calculate composite scores
   useEffect(() => {
@@ -374,8 +375,45 @@ export default function BudgetOptimizer({ onOptimizerSelect }) {
             </div>
           )}
 
+          {/* Source Tabs Filter */}
+          <div className="flex gap-1.5 mb-4" style={{ display: 'flex', gap: '6px', marginBottom: '16px', overflowX: 'auto', paddingBottom: '4px' }}>
+            {['All', 'CRM', 'Web', 'Docs', 'Profile'].map((source) => {
+              const count = source === 'All' 
+                ? chunks.length 
+                : chunks.filter(c => c.source === source).length;
+              const isActive = activeSourceFilter === source;
+              return (
+                <button
+                  key={source}
+                  onClick={() => setActiveSourceFilter(source)}
+                  className={`px-3 py-1 text-[10px] font-mono font-bold rounded-lg border transition-all cursor-pointer ${
+                    isActive 
+                      ? 'bg-indigo-500/10 border-indigo-500/30 text-indigo-400 font-bold' 
+                      : 'bg-slate-950/20 border-slate-800/80 text-slate-500 hover:text-slate-400'
+                  }`}
+                  style={{
+                    padding: '4px 10px',
+                    fontSize: '0.68rem',
+                    fontFamily: 'JetBrains Mono',
+                    borderRadius: '6px',
+                    border: '1px solid',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s',
+                    borderColor: isActive ? 'rgba(99, 102, 241, 0.3)' : 'var(--panel-border)',
+                    backgroundColor: isActive ? 'rgba(99, 102, 241, 0.05)' : 'rgba(5, 7, 12, 0.3)',
+                    color: isActive ? '#a5b4fc' : 'var(--text-muted)'
+                  }}
+                >
+                  {source} ({count})
+                </button>
+              );
+            })}
+          </div>
+
           <div className="flex flex-col gap-2.5" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            {chunks.map((chunk) => {
+            {chunks
+              .filter(chunk => activeSourceFilter === 'All' || chunk.source === activeSourceFilter)
+              .map((chunk) => {
               const isSelected = selectedIds.has(chunk.id);
               const srcTheme = sourceColors[chunk.source] || 'text-slate-400';
               

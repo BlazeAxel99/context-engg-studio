@@ -1782,3 +1782,81 @@ body {
     margin-top: 2px;
 }
 
+/* ==========================================================================
+   2026 TRENDY POLISH - THEME SYSTEM, WHITESPACE, & MICRO-INTERACTIONS
+   ========================================================================== */
+
+/* Light Theme Variables */
+.light-theme {
+    --bg-dark: #f8fafc; /* high-slate light background */
+    --panel-bg: rgba(255, 255, 255, 0.85); /* white glassmorphism card */
+    --panel-border: rgba(15, 23, 42, 0.08); /* slate-900 transparent */
+    --panel-border-glow: rgba(99, 102, 241, 0.15);
+    
+    /* Neon overrides for high readability in Light mode */
+    --neon-purple: #4f46e5;
+    --neon-purple-glow: rgba(79, 70, 229, 0.12);
+    --neon-cyan: #0891b2;
+    --neon-cyan-glow: rgba(8, 145, 178, 0.12);
+    --neon-green: #059669;
+    --neon-green-glow: rgba(5, 150, 105, 0.12);
+    --neon-amber: #d97706;
+    --neon-amber-glow: rgba(217, 119, 6, 0.12);
+    --neon-red: #dc2626;
+    --neon-red-glow: rgba(220, 38, 38, 0.12);
+    
+    /* Text Colors */
+    --text-primary: #0f172a; /* slate-900 */
+    --text-secondary: #334155; /* slate-700 */
+    --text-muted: #64748b; /* slate-500 */
+}
+
+/* Global Transitions for smooth theme switching */
+body, .glass-panel, .module-container, .insight-box, header, nav, button, input, textarea, td, th, blockquote, span, div, h1, h2, h3, p {
+    transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Micro-animations */
+.animate-spin-slow {
+    animation: spin 8s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Light Theme Card Shadows and Specific Element Refinements */
+.light-theme .glass-panel {
+    box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(15, 23, 42, 0.02);
+}
+
+.light-theme select, .light-theme textarea, .light-theme input {
+    background-color: rgba(255, 255, 255, 0.8) !important;
+    border-color: rgba(15, 23, 42, 0.12) !important;
+    color: #0f172a !important;
+}
+
+.light-theme th {
+    background-color: rgba(15, 23, 42, 0.03) !important;
+    color: #334155 !important;
+}
+
+.light-theme tr:hover {
+    background-color: rgba(15, 23, 42, 0.02) !important;
+}
+
+.light-theme .slider-input {
+    background: rgba(15, 23, 42, 0.08);
+}
+
+.light-theme .calc-metric-box {
+    background: rgba(15, 23, 42, 0.03);
+    border: 1px solid rgba(15, 23, 42, 0.05);
+}
+
+
+
