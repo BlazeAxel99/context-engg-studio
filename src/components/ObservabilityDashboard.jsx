@@ -303,7 +303,7 @@ export default function ObservabilityDashboard({ initialStats }) {
                   Reinforcement Weights Applied (Optimization Delta)
                 </span>
               </div>
-              <p className="text-xs leading-relaxed text-slate-400" style={{ fontSize: '0.78rem', margin: 0, color: '#9ca3af', lineHeight: '1.4' }}>
+              <p className="text-xs leading-relaxed text-slate-400" style={{ fontSize: '0.78rem', margin: 0, color: 'var(--text-secondary)', lineHeight: '1.4' }}>
                 System adjusted Module 3 knapsack weight heuristics based on LLM Judge feedback. In the next run, low-impact competitive dossiers are automatically swapped out in favor of fresh regulatory guidelines to prevent silent compliance errors:
               </p>
               <div className="flex items-center gap-6 mt-3 font-mono text-[10px]" style={{ display: 'flex', alignItems: 'center', gap: '24px', marginTop: '12px', fontFamily: 'JetBrains Mono', fontSize: '0.68rem' }}>
@@ -328,19 +328,19 @@ export default function ObservabilityDashboard({ initialStats }) {
             
             {/* Card 1: Context Coverage */}
             <div className="glass-panel group relative border border-slate-800/80 hover:border-emerald-500/20 transition-all" style={{ padding: '16px' }} title="Coverage = % of intent-decomposed context requirements satisfied by selected chunks">
-              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500 block mb-1" style={{ fontSize: '0.62rem', fontFamily: 'JetBrains Mono', color: '#6b7280', display: 'block', marginBottom: '4px' }}>Context Coverage Score</span>
+              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500 block mb-1" style={{ fontSize: '0.62rem', fontFamily: 'JetBrains Mono', color: 'var(--text-muted)', display: 'block', marginBottom: '4px' }}>Context Coverage Score</span>
               <div className="text-2xl font-bold font-mono" style={{ fontSize: '1.5rem', fontWeight: 'bold', fontFamily: 'JetBrains Mono', color: '#34d399' }}>{metrics.coverage}%</div>
-              <p className="text-[10px] text-slate-400 mt-1" style={{ fontSize: '0.68rem', color: '#9ca3af', marginTop: '4px' }}>6 of 6 decomposed needs addressed</p>
+              <p className="text-[10px] text-slate-400 mt-1" style={{ fontSize: '0.68rem', color: 'var(--text-secondary)', marginTop: '4px' }}>6 of 6 decomposed needs addressed</p>
               <span className="text-[9px] font-mono text-emerald-400 block mt-2" style={{ fontSize: '0.62rem', fontFamily: 'JetBrains Mono', color: '#34d399', display: 'block', marginTop: '8px' }}>↑ +12% vs baseline (greedy)</span>
             </div>
 
             {/* Card 2: Token Budget Efficiency */}
             <div className="glass-panel group relative border border-slate-800/80 hover:border-cyan-500/20 transition-all" style={{ padding: '16px' }} title="Optimizer recovered 153 tokens vs. greedy selection — used for higher-quality chunks">
-              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500 block mb-1" style={{ fontSize: '0.62rem', fontFamily: 'JetBrains Mono', color: '#6b7280', display: 'block', marginBottom: '4px' }}>Token Budget Utilization</span>
+              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500 block mb-1" style={{ fontSize: '0.62rem', fontFamily: 'JetBrains Mono', color: 'var(--text-muted)', display: 'block', marginBottom: '4px' }}>Token Budget Utilization</span>
               <div className="text-2xl font-bold text-cyan-400 font-mono" style={{ fontSize: '1.5rem', fontWeight: 'bold', fontFamily: 'JetBrains Mono', color: '#22d3ee' }}>
                 {metrics.tokens} / 4,000
               </div>
-              <p className="text-[10px] text-slate-400 mt-1" style={{ fontSize: '0.68rem', color: '#9ca3af', marginTop: '4px' }}>{((metrics.tokens / 4000) * 100).toFixed(1)}% efficiency</p>
+              <p className="text-[10px] text-slate-400 mt-1" style={{ fontSize: '0.68rem', color: 'var(--text-secondary)', marginTop: '4px' }}>{((metrics.tokens / 4000) * 100).toFixed(1)}% efficiency</p>
               <div className="w-full h-1 bg-slate-900 rounded-full mt-2 overflow-hidden" style={{ width: '100%', height: '4px', backgroundColor: 'rgba(255,255,255,0.03)', borderRadius: '2px', overflow: 'hidden', marginTop: '8px' }}>
                 <div className="bg-cyan-400 h-full" style={{ width: `${(metrics.tokens / 4000) * 100}%`, height: '100%', backgroundColor: '#22d3ee' }} />
               </div>
@@ -348,17 +348,17 @@ export default function ObservabilityDashboard({ initialStats }) {
 
             {/* Card 3: Compression Ratio */}
             <div className="glass-panel group relative border border-slate-800/80 hover:border-indigo-500/20 transition-all" style={{ padding: '16px' }} title="Compression ratio with signal preservation score. Target: >80% compression, >90% signal.">
-              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500 block mb-1" style={{ fontSize: '0.62rem', fontFamily: 'JetBrains Mono', color: '#6b7280', display: 'block', marginBottom: '4px' }}>Compression Ratio</span>
-              <div className="text-2xl font-bold text-indigo-400 font-mono" style={{ fontSize: '1.5rem', fontWeight: 'bold', fontFamily: 'JetBrains Mono', color: '#818cf8' }}>{metrics.compression}%</div>
-              <p className="text-[10px] text-slate-400 mt-1" style={{ fontSize: '0.68rem', color: '#9ca3af', marginTop: '4px' }}>780 → 118 tokens (quality preserved: 94%)</p>
-              <span className="text-[9px] font-mono text-indigo-400 block mt-2" style={{ fontSize: '0.62rem', fontFamily: 'JetBrains Mono', color: '#818cf8', display: 'block', marginTop: '8px' }}>✓ Preserving key advisory parameters</span>
+              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500 block mb-1" style={{ fontSize: '0.62rem', fontFamily: 'JetBrains Mono', color: 'var(--text-muted)', display: 'block', marginBottom: '4px' }}>Compression Ratio</span>
+              <div className="text-2xl font-bold text-indigo-400 font-mono" style={{ fontSize: '1.5rem', fontWeight: 'bold', fontFamily: 'JetBrains Mono', color: 'var(--neon-purple)' }}>{metrics.compression}%</div>
+              <p className="text-[10px] text-slate-400 mt-1" style={{ fontSize: '0.68rem', color: 'var(--text-secondary)', marginTop: '4px' }}>780 → 118 tokens (quality preserved: 94%)</p>
+              <span className="text-[9px] font-mono text-indigo-400 block mt-2" style={{ fontSize: '0.62rem', fontFamily: 'JetBrains Mono', color: 'var(--neon-purple)', display: 'block', marginTop: '8px' }}>✓ Preserving key advisory parameters</span>
             </div>
 
             {/* Card 4: Freshness Index */}
             <div className={`glass-panel group relative border ${freshnessBorderClass} transition-all`} style={{ padding: '16px' }} title="Weighted freshness across selected chunks. 0.0 = all stale, 1.0 = all real-time.">
-              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500 block mb-1" style={{ fontSize: '0.62rem', fontFamily: 'JetBrains Mono', color: '#6b7280', display: 'block', marginBottom: '4px' }}>Freshness Index</span>
+              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500 block mb-1" style={{ fontSize: '0.62rem', fontFamily: 'JetBrains Mono', color: 'var(--text-muted)', display: 'block', marginBottom: '4px' }}>Freshness Index</span>
               <div className="text-2xl font-bold font-mono" style={{ fontSize: '1.5rem', fontWeight: 'bold', fontFamily: 'JetBrains Mono', color: freshnessColor }}>{metrics.freshness.toFixed(2)}</div>
-              <p className="text-[10px] text-slate-400 mt-1" style={{ fontSize: '0.68rem', color: '#9ca3af', marginTop: '4px' }}>
+              <p className="text-[10px] text-slate-400 mt-1" style={{ fontSize: '0.68rem', color: 'var(--text-secondary)', marginTop: '4px' }}>
                 {isFreshnessStale ? '⚠️ Warning: Some live chunks crossed TTL threshold' : 'All critical chunks within TTL'}
               </p>
               <span className="text-[9px] font-mono block mt-2" style={{ fontSize: '0.62rem', fontFamily: 'JetBrains Mono', color: freshnessColor, display: 'block', marginTop: '8px' }}>
@@ -368,11 +368,11 @@ export default function ObservabilityDashboard({ initialStats }) {
 
             {/* Card 5: LLM Judge Score */}
             <div className="glass-panel group relative border border-slate-800/80 hover:border-emerald-500/20 transition-all" style={{ padding: '16px' }} title="Evaluation score from Claude LLM Judge step on prompt responsiveness.">
-              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500 block mb-1" style={{ fontSize: '0.62rem', fontFamily: 'JetBrains Mono', color: '#6b7280', display: 'block', marginBottom: '4px' }}>LLM Judge Score (Post-Output)</span>
-              <div className="text-2xl font-bold font-mono flex items-center gap-1.5" style={{ fontSize: '1.5rem', fontWeight: 'bold', fontFamily: 'JetBrains Mono', color: '#34d399', display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500 block mb-1" style={{ fontSize: '0.62rem', fontFamily: 'JetBrains Mono', color: 'var(--text-muted)', display: 'block', marginBottom: '4px' }}>LLM Judge Score (Post-Output)</span>
+              <div className="text-2xl font-bold font-mono flex items-center gap-1.5" style={{ fontSize: '1.5rem', fontWeight: 'bold', fontFamily: 'JetBrains Mono', color: 'var(--neon-green)', display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <span>{metrics.judgeScore} / 10</span>
               </div>
-              <p className="text-[10px] text-slate-400 mt-1" style={{ fontSize: '0.68rem', color: '#9ca3af', marginTop: '4px' }}>+1.9 vs unoptimized context</p>
+              <p className="text-[10px] text-slate-400 mt-1" style={{ fontSize: '0.68rem', color: 'var(--text-secondary)', marginTop: '4px' }}>+1.9 vs unoptimized context</p>
               
               {/* Trend sparkline of the last 5 runs using mini-Recharts */}
               <div style={{ width: '100%', height: '20px', marginTop: '8px' }}>
@@ -386,13 +386,13 @@ export default function ObservabilityDashboard({ initialStats }) {
 
             {/* Card 6: Pipeline Latency */}
             <div className="glass-panel group relative border border-slate-800/80 hover:border-amber-500/20 transition-all" style={{ padding: '16px' }}>
-              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500 block mb-1" style={{ fontSize: '0.62rem', fontFamily: 'JetBrains Mono', color: '#6b7280', display: 'block', marginBottom: '4px' }}>Pipeline Latency</span>
-              <div className="text-2xl font-bold text-amber-400 font-mono flex items-center gap-1.5" style={{ fontSize: '1.5rem', fontWeight: 'bold', fontFamily: 'JetBrains Mono', color: '#fbbf24', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <Clock className="w-5 h-5 text-amber-400" />
+              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500 block mb-1" style={{ fontSize: '0.62rem', fontFamily: 'JetBrains Mono', color: 'var(--text-muted)', display: 'block', marginBottom: '4px' }}>Pipeline Latency</span>
+              <div className="text-2xl font-bold text-amber-400 font-mono flex items-center gap-1.5" style={{ fontSize: '1.5rem', fontWeight: 'bold', fontFamily: 'JetBrains Mono', color: 'var(--neon-amber)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <Clock className="w-5 h-5 text-amber-400" style={{ color: 'var(--neon-amber)' }} />
                 <span>{metrics.latency}s</span>
               </div>
-              <p className="text-[10px] text-slate-400 mt-1" style={{ fontSize: '0.68rem', color: '#9ca3af', marginTop: '4px' }}>Intent decomp: 0.4s · Retrieval: 0.6s · Compression: 0.8s</p>
-              <span className="text-[9px] font-mono text-slate-500 block mt-2" style={{ fontSize: '0.62rem', fontFamily: 'JetBrains Mono', color: '#6b7280', display: 'block', marginTop: '8px' }}>Within 2.0s SLA target</span>
+              <p className="text-[10px] text-slate-400 mt-1" style={{ fontSize: '0.68rem', color: 'var(--text-secondary)', marginTop: '4px' }}>Intent decomp: 0.4s · Retrieval: 0.6s · Compression: 0.8s</p>
+              <span className="text-[9px] font-mono text-slate-500 block mt-2" style={{ fontSize: '0.62rem', fontFamily: 'JetBrains Mono', color: 'var(--text-muted)', display: 'block', marginTop: '8px' }}>Within 2.0s SLA target</span>
             </div>
 
           </div>
@@ -431,13 +431,13 @@ export default function ObservabilityDashboard({ initialStats }) {
             </blockquote>
             
             <div className="flex justify-center gap-3 flex-wrap" style={{ display: 'flex', justifyContent: 'center', gap: '12px', flexWrap: 'wrap' }}>
-              <span className="text-[10px] font-mono font-bold tracking-widest text-indigo-400 border border-indigo-500/20 bg-indigo-500/5 px-3 py-1.5 rounded-full uppercase" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.68rem', fontWeight: 'bold', border: '1px solid rgba(99,102,241,0.2)', backgroundColor: 'rgba(99,102,241,0.03)', color: '#818cf8', padding: '6px 14px', borderRadius: '30px', letterSpacing: '1px' }}>
+              <span className="text-[10px] font-mono font-bold tracking-widest text-indigo-400 border border-indigo-500/20 bg-indigo-500/5 px-3 py-1.5 rounded-full uppercase" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.68rem', fontWeight: 'bold', border: '1px solid rgba(99,102,241,0.2)', backgroundColor: 'rgba(99,102,241,0.03)', color: 'var(--neon-purple)', padding: '6px 14px', borderRadius: '30px', letterSpacing: '1px' }}>
                 Context has a lifecycle
               </span>
-              <span className="text-[10px] font-mono font-bold tracking-widest text-indigo-400 border border-indigo-500/20 bg-indigo-500/5 px-3 py-1.5 rounded-full uppercase" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.68rem', fontWeight: 'bold', border: '1px solid rgba(99,102,241,0.2)', backgroundColor: 'rgba(99,102,241,0.03)', color: '#818cf8', padding: '6px 14px', borderRadius: '30px', letterSpacing: '1px' }}>
+              <span className="text-[10px] font-mono font-bold tracking-widest text-indigo-400 border border-indigo-500/20 bg-indigo-500/5 px-3 py-1.5 rounded-full uppercase" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.68rem', fontWeight: 'bold', border: '1px solid rgba(99,102,241,0.2)', backgroundColor: 'rgba(99,102,241,0.03)', color: 'var(--neon-purple)', padding: '6px 14px', borderRadius: '30px', letterSpacing: '1px' }}>
                 Selection is optimization
               </span>
-              <span className="text-[10px] font-mono font-bold tracking-widest text-indigo-400 border border-indigo-500/20 bg-indigo-500/5 px-3 py-1.5 rounded-full uppercase" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.68rem', fontWeight: 'bold', border: '1px solid rgba(99,102,241,0.2)', backgroundColor: 'rgba(99,102,241,0.03)', color: '#818cf8', padding: '6px 14px', borderRadius: '30px', letterSpacing: '1px' }}>
+              <span className="text-[10px] font-mono font-bold tracking-widest text-indigo-400 border border-indigo-500/20 bg-indigo-500/5 px-3 py-1.5 rounded-full uppercase" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.68rem', fontWeight: 'bold', border: '1px solid rgba(99,102,241,0.2)', backgroundColor: 'rgba(99,102,241,0.03)', color: 'var(--neon-purple)', padding: '6px 14px', borderRadius: '30px', letterSpacing: '1px' }}>
                 Quality is measurable
               </span>
             </div>
@@ -522,16 +522,16 @@ export default function ObservabilityDashboard({ initialStats }) {
                     </span>
                     
                     {log.status === 'reinforce' ? (
-                      <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-1.5 animate-pulse" style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#22d3ee', marginTop: '6px' }} />
+                      <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-1.5 animate-pulse" style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'var(--neon-cyan)', marginTop: '6px' }} />
                     ) : log.status === 'warning' ? (
-                      <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 animate-pulse" style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#fbbf24', marginTop: '6px' }} />
+                      <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 animate-pulse" style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'var(--neon-amber)', marginTop: '6px' }} />
                     ) : log.status === 'fail' ? (
-                      <div className="w-1.5 h-1.5 rounded-full bg-red-500 mt-1.5" style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#ef4444', marginTop: '6px' }} />
+                      <div className="w-1.5 h-1.5 rounded-full bg-red-500 mt-1.5" style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'var(--neon-red)', marginTop: '6px' }} />
                     ) : (
-                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1.5" style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#10b981', marginTop: '6px' }} />
+                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1.5" style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'var(--neon-green)', marginTop: '6px' }} />
                     )}
                     
-                    <span className={log.status === 'reinforce' ? 'text-cyan-300 font-semibold' : log.status === 'warning' ? 'text-amber-400 font-medium' : 'text-slate-300'} style={{ color: log.status === 'reinforce' ? '#22d3ee' : log.status === 'warning' ? '#fbbf24' : 'var(--text-secondary)', fontWeight: log.status === 'reinforce' ? 'bold' : 'normal' }}>
+                    <span className={log.status === 'reinforce' ? 'text-cyan-300 font-semibold' : log.status === 'warning' ? 'text-amber-400 font-medium' : 'text-slate-300'} style={{ color: log.status === 'reinforce' ? 'var(--neon-cyan)' : log.status === 'warning' ? 'var(--neon-amber)' : 'var(--text-secondary)', fontWeight: log.status === 'reinforce' ? 'bold' : 'normal' }}>
                       {log.text}
                     </span>
                   </div>

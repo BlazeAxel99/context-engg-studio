@@ -226,7 +226,7 @@ export default function App() {
           }}
         >
           <div className="max-w-[1920px] mx-auto flex items-center justify-between gap-4 flex-wrap" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '16px', flexWrap: 'wrap' }}>
-            <div className="flex items-center gap-2 text-xs text-slate-400" style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.75rem', color: '#9ca3af' }}>
+            <div className="flex items-center gap-2 text-xs text-slate-400" style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
               <Key className="w-4 h-4 text-indigo-400" />
               <span>Enter Anthropic API Key for live Claude-Sonnet requests. No key? Choose Demo Mock Mode.</span>
             </div>
@@ -239,7 +239,7 @@ export default function App() {
                   width: '260px', padding: '6px 12px', fontSize: '0.75rem',
                   backgroundColor: 'rgba(5, 7, 12, 0.6)',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
-                  borderRadius: '4px', outline: 'none', color: '#fff'
+                  borderRadius: '4px', outline: 'none', color: 'var(--text-primary)'
                 }}
                 placeholder="sk-ant-v1-..."
                 value={keyInput}
@@ -248,14 +248,14 @@ export default function App() {
               <button
                 onClick={handleSaveKey}
                 className="bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs px-3.5 py-1.5 rounded transition-all"
-                style={{ padding: '6px 14px', fontSize: '0.72rem', fontWeight: 700, backgroundColor: '#6366f1', border: 'none', borderRadius: '4px', cursor: 'pointer', color: '#fff' }}
+                style={{ padding: '6px 14px', fontSize: '0.72rem', fontWeight: 700, backgroundColor: '#6366f1', border: 'none', borderRadius: '4px', cursor: 'pointer', color: 'var(--text-primary)' }}
               >
                 Apply Key
               </button>
               <button
                 onClick={handleUseMockMode}
                 className="bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-300 font-bold text-xs px-3.5 py-1.5 rounded transition-all"
-                style={{ padding: '6px 14px', fontSize: '0.72rem', fontWeight: 700, backgroundColor: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '4px', cursor: 'pointer', color: '#d1d5db' }}
+                style={{ padding: '6px 14px', fontSize: '0.72rem', fontWeight: 700, backgroundColor: 'rgba(255,255,255,0.03)', border: '1px solid var(--panel-border)', borderRadius: '4px', cursor: 'pointer', color: 'var(--text-secondary)' }}
               >
                 Demo Mock Mode
               </button>
@@ -275,7 +275,7 @@ export default function App() {
             justifyContent: 'space-between',
             fontFamily: 'JetBrains Mono',
             fontSize: '0.62rem',
-            color: '#6b7280',
+            color: 'var(--text-muted)',
             zIndex: 20
           }}
         >

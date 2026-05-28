@@ -28,26 +28,26 @@ export default function AgentPropagation() {
   const isResearchStaleWarning = !staleActive && researchFreshness < 60;
   
   const getAgentStatus = (agentName) => {
-    if (agentName === 'Orchestrator') return { label: 'HEALTHY', color: 'bg-emerald-500', text: 'text-emerald-400', border: 'border-emerald-500/25' };
+    if (agentName === 'Orchestrator') return { label: 'HEALTHY', color: 'var(--neon-green)', border: 'rgba(16, 185, 129, 0.2)' };
     
     if (agentName === 'Research') {
-      if (isResearchStale) return { label: `⚠️ Context stale (${researchFreshness}%)`, color: 'bg-yellow-500', text: 'text-yellow-400', border: 'border-yellow-500/35' };
-      if (isResearchStaleWarning) return { label: 'DEGRADED', color: 'bg-yellow-500/80', text: 'text-yellow-500/80', border: 'border-yellow-500/20' };
-      return { label: 'HEALTHY', color: 'bg-emerald-500', text: 'text-emerald-400', border: 'border-emerald-500/20' };
+      if (isResearchStale) return { label: `⚠️ Context stale (${researchFreshness}%)`, color: 'var(--neon-amber)', border: 'rgba(245, 158, 11, 0.3)' };
+      if (isResearchStaleWarning) return { label: 'DEGRADED', color: 'var(--neon-amber)', border: 'rgba(245, 158, 11, 0.2)' };
+      return { label: 'HEALTHY', color: 'var(--neon-green)', border: 'rgba(16, 185, 129, 0.2)' };
     }
 
     if (agentName === 'Analysis') {
-      if (isResearchStale) return { label: '⚠️ Analysis based on stale data', color: 'bg-orange-500', text: 'text-orange-400', border: 'border-orange-500/35' };
-      return { label: 'HEALTHY', color: 'bg-emerald-500', text: 'text-emerald-400', border: 'border-emerald-500/20' };
+      if (isResearchStale) return { label: '⚠️ Analysis based on stale data', color: 'var(--neon-amber)', border: 'rgba(245, 158, 11, 0.3)' };
+      return { label: 'HEALTHY', color: 'var(--neon-green)', border: 'rgba(16, 185, 129, 0.2)' };
     }
 
     if (agentName === 'Drafting') {
-      if (isResearchStale) return { label: '❌ Output quality compromised', color: 'bg-rose-500', text: 'text-rose-400', border: 'border-rose-500/45' };
-      if (researchToDrafting) return { label: 'OVER-SPECIFICATION', color: 'bg-blue-500', text: 'text-blue-400', border: 'border-blue-500/40' };
-      return { label: 'HEALTHY', color: 'bg-emerald-500', text: 'text-emerald-400', border: 'border-emerald-500/20' };
+      if (isResearchStale) return { label: '❌ Output quality compromised', color: 'var(--neon-red)', border: 'rgba(239, 68, 68, 0.3)' };
+      if (researchToDrafting) return { label: 'OVER-SPECIFICATION', color: 'var(--neon-purple)', border: 'rgba(139, 92, 246, 0.3)' };
+      return { label: 'HEALTHY', color: 'var(--neon-green)', border: 'rgba(16, 185, 129, 0.2)' };
     }
 
-    return { label: 'HEALTHY', color: 'bg-emerald-500', text: 'text-emerald-400', border: 'border-emerald-500/20' };
+    return { label: 'HEALTHY', color: 'var(--neon-green)', border: 'rgba(16, 185, 129, 0.2)' };
   };
 
   return (
@@ -85,26 +85,26 @@ export default function AgentPropagation() {
 
       {/* TOP ROW: Horizontal multi-agent workflow map */}
       <div className="glass-panel mb-5" style={{ padding: '24px', marginBottom: '16px' }}>
-        <h4 className="font-bold text-slate-200 mb-4" style={{ fontSize: '0.98rem', color: '#f3f4f6', marginBottom: '16px', margin: 0 }}>Active Multi-Agent Runway Diagram</h4>
+        <h4 className="font-bold text-slate-200 mb-4" style={{ fontSize: '0.98rem', color: 'var(--text-primary)', marginBottom: '16px', margin: 0 }}>Active Multi-Agent Runway Diagram</h4>
         
         <div className="flex justify-between items-center gap-2 overflow-x-auto py-2" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
           
           {/* Agent 1: Orchestrator */}
           <div className="agent-node flex-1 min-w-[140px] border border-slate-800 bg-slate-950/40 p-4 rounded-xl text-center relative"
             style={{
-              flex: 1, minWidth: '140px', padding: '14px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)', backgroundColor: 'rgba(5, 7, 12, 0.3)', textAlign: 'center', position: 'relative'
+              flex: 1, minWidth: '140px', padding: '14px', borderRadius: '12px', border: '1px solid var(--panel-border)', backgroundColor: 'rgba(5, 7, 12, 0.3)', textAlign: 'center', position: 'relative'
             }}
           >
             <div className="w-8 h-8 rounded-full bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mx-auto mb-2 text-indigo-400 font-bold text-sm" style={{ display: 'flex', alignItems: 'center', justify: 'center', margin: '0 auto 8px auto' }}>
               AG
             </div>
-            <h5 className="font-bold text-slate-200 text-xs" style={{ fontSize: '0.78rem', color: '#f3f4f6', margin: 0 }}>Orchestrator</h5>
-            <div className="text-[9px] font-mono text-slate-500 mt-1" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.62rem', color: '#6b7280' }}>
+            <h5 className="font-bold text-slate-200 text-xs" style={{ fontSize: '0.78rem', color: 'var(--text-primary)', margin: 0 }}>Orchestrator</h5>
+            <div className="text-[9px] font-mono text-slate-500 mt-1" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.62rem', color: 'var(--text-muted)' }}>
               In: 180 t · Out: 1,840 t
             </div>
             <div className="mt-2.5 flex items-center justify-center gap-1.5" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', marginTop: '10px' }}>
-              <div className="w-2 h-2 rounded-full bg-emerald-500" />
-              <span className="text-[9px] font-mono text-emerald-400 font-bold" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.62rem' }}>HEALTHY</span>
+              <div className="w-2 h-2 rounded-full" style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: 'var(--neon-green)' }} />
+              <span className="text-[9px] font-mono font-bold" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.62rem', color: 'var(--neon-green)' }}>HEALTHY</span>
             </div>
           </div>
 
@@ -123,13 +123,13 @@ export default function AgentPropagation() {
                 <div className="w-8 h-8 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mx-auto mb-2 text-blue-400 font-bold text-sm" style={{ display: 'flex', alignItems: 'center', justify: 'center', margin: '0 auto 8px auto' }}>
                   RE
                 </div>
-                <h5 className="font-bold text-slate-200 text-xs" style={{ fontSize: '0.78rem', color: '#f3f4f6', margin: 0 }}>Research Agent</h5>
-                <div className="text-[9px] font-mono text-slate-500 mt-1" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.62rem', color: '#6b7280' }}>
+                <h5 className="font-bold text-slate-200 text-xs" style={{ fontSize: '0.78rem', color: 'var(--text-primary)', margin: 0 }}>Research Agent</h5>
+                <div className="text-[9px] font-mono text-slate-500 mt-1" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.62rem', color: 'var(--text-muted)' }}>
                   In: {orchToResearch ? '1,840 t' : '150 t'} · Out: 420 t
                 </div>
                 <div className="mt-2.5 flex items-center justify-center gap-1.5" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', marginTop: '10px' }}>
-                  <div className={`w-2 h-2 rounded-full ${status.color}`} style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: isResearchStale ? '#f59e0b' : '#10b981' }} />
-                  <span className={`text-[9px] font-mono font-bold ${status.text}`} style={{ fontFamily: 'JetBrains Mono', fontSize: '0.62rem' }}>{status.label}</span>
+                  <div className="w-2 h-2 rounded-full" style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: status.color }} />
+                  <span className="text-[9px] font-mono font-bold" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.62rem', color: status.color }}>{status.label}</span>
                 </div>
               </div>
             );
@@ -150,13 +150,13 @@ export default function AgentPropagation() {
                 <div className="w-8 h-8 rounded-full bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mx-auto mb-2 text-purple-400 font-bold text-sm" style={{ display: 'flex', alignItems: 'center', justify: 'center', margin: '0 auto 8px auto' }}>
                   AN
                 </div>
-                <h5 className="font-bold text-slate-200 text-xs" style={{ fontSize: '0.78rem', color: '#f3f4f6', margin: 0 }}>Analysis Agent</h5>
-                <div className="text-[9px] font-mono text-slate-500 mt-1" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.62rem', color: '#6b7280' }}>
+                <h5 className="font-bold text-slate-200 text-xs" style={{ fontSize: '0.78rem', color: 'var(--text-primary)', margin: 0 }}>Analysis Agent</h5>
+                <div className="text-[9px] font-mono text-slate-500 mt-1" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.62rem', color: 'var(--text-muted)' }}>
                   In: {researchToAnalysis ? '420 t' : '0 t'} · Out: 280 t
                 </div>
                 <div className="mt-2.5 flex items-center justify-center gap-1.5" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', marginTop: '10px' }}>
-                  <div className={`w-2 h-2 rounded-full ${status.color}`} style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: isResearchStale ? '#f97316' : '#10b981' }} />
-                  <span className={`text-[9px] font-mono font-bold ${status.text}`} style={{ fontFamily: 'JetBrains Mono', fontSize: '0.62rem' }}>{status.label}</span>
+                  <div className="w-2 h-2 rounded-full" style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: status.color }} />
+                  <span className="text-[9px] font-mono font-bold" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.62rem', color: status.color }}>{status.label}</span>
                 </div>
               </div>
             );
@@ -177,13 +177,13 @@ export default function AgentPropagation() {
                 <div className="w-8 h-8 rounded-full bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mx-auto mb-2 text-cyan-400 font-bold text-sm" style={{ display: 'flex', alignItems: 'center', justify: 'center', margin: '0 auto 8px auto' }}>
                   DF
                 </div>
-                <h5 className="font-bold text-slate-200 text-xs" style={{ fontSize: '0.78rem', color: '#f3f4f6', margin: 0 }}>Drafting Agent</h5>
-                <div className="text-[9px] font-mono text-slate-500 mt-1" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.62rem', color: '#6b7280' }}>
+                <h5 className="font-bold text-slate-200 text-xs" style={{ fontSize: '0.78rem', color: 'var(--text-primary)', margin: 0 }}>Drafting Agent</h5>
+                <div className="text-[9px] font-mono text-slate-500 mt-1" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.62rem', color: 'var(--text-muted)' }}>
                   In: {analysisToDrafting ? (researchToDrafting ? '1,060 t' : '280 t') : '0 t'} · Out: 512 t
                 </div>
                 <div className="mt-2.5 flex items-center justify-center gap-1.5" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', marginTop: '10px' }}>
-                  <div className={`w-2 h-2 rounded-full ${status.color}`} style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: isResearchStale ? '#ef4444' : (researchToDrafting ? '#3b82f6' : '#10b981') }} />
-                  <span className={`text-[9px] font-mono font-bold ${status.text}`} style={{ fontFamily: 'JetBrains Mono', fontSize: '0.62rem' }}>{status.label}</span>
+                  <div className="w-2 h-2 rounded-full" style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: status.color }} />
+                  <span className="text-[9px] font-mono font-bold" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.62rem', color: status.color }}>{status.label}</span>
                 </div>
               </div>
             );
@@ -199,7 +199,7 @@ export default function AgentPropagation() {
         <div className="glass-panel" style={{ padding: '20px' }}>
           <div className="flex items-center gap-2 mb-4" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
             <Server className="w-5 h-5 text-indigo-400" />
-            <h4 className="font-bold text-slate-200" style={{ fontSize: '0.98rem', color: '#f3f4f6', margin: 0 }}>Context Propagation Rules</h4>
+            <h4 className="font-bold text-slate-200" style={{ fontSize: '0.98rem', color: 'var(--text-primary)', margin: 0 }}>Context Propagation Rules</h4>
           </div>
 
           <div className="flex flex-col gap-4" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
@@ -207,7 +207,7 @@ export default function AgentPropagation() {
             {/* Rule 1 */}
             <div className="flex justify-between items-center" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div className="flex-col" style={{ display: 'flex', flexDirection: 'column' }}>
-                <span className="text-xs font-semibold text-slate-300" style={{ fontSize: '0.78rem', color: '#d1d5db', fontWeight: 600 }}>Orchestrator → Research</span>
+                <span className="text-xs font-semibold text-slate-300" style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', fontWeight: 600 }}>Orchestrator → Research</span>
                 <span className="text-[10px] text-slate-400 mt-0.5" style={{ fontSize: '0.65rem', color: '#818cf8' }}>"Full shared context"</span>
               </div>
               <button
@@ -222,7 +222,7 @@ export default function AgentPropagation() {
             {/* Rule 2 */}
             <div className="flex justify-between items-center" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div className="flex-col" style={{ display: 'flex', flexDirection: 'column' }}>
-                <span className="text-xs font-semibold text-slate-300" style={{ fontSize: '0.78rem', color: '#d1d5db', fontWeight: 600 }}>Research → Analysis</span>
+                <span className="text-xs font-semibold text-slate-300" style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', fontWeight: 600 }}>Research → Analysis</span>
                 <span className="text-[10px] text-slate-400 mt-0.5" style={{ fontSize: '0.65rem', color: '#818cf8' }}>"Findings only (distilled)"</span>
               </div>
               <button
@@ -237,7 +237,7 @@ export default function AgentPropagation() {
             {/* Rule 3 */}
             <div className="flex justify-between items-center" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div className="flex-col" style={{ display: 'flex', flexDirection: 'column' }}>
-                <span className="text-xs font-semibold text-slate-300" style={{ fontSize: '0.78rem', color: '#d1d5db', fontWeight: 600 }}>Analysis → Drafting</span>
+                <span className="text-xs font-semibold text-slate-300" style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', fontWeight: 600 }}>Analysis → Drafting</span>
                 <span className="text-[10px] text-slate-400 mt-0.5" style={{ fontSize: '0.65rem', color: '#818cf8' }}>"Structured insights only"</span>
               </div>
               <button
@@ -252,7 +252,7 @@ export default function AgentPropagation() {
             {/* Rule 4: Context Isolation */}
             <div className="flex justify-between items-center border-t border-slate-900 pt-3" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '12px' }}>
               <div className="flex-col" style={{ display: 'flex', flexDirection: 'column' }}>
-                <span className="text-xs font-semibold text-slate-300" style={{ fontSize: '0.78rem', color: '#d1d5db', fontWeight: 600 }}>Research → Drafting</span>
+                <span className="text-xs font-semibold text-slate-300" style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', fontWeight: 600 }}>Research → Drafting</span>
                 <span className="text-[10px] text-slate-400 mt-0.5" style={{ fontSize: '0.65rem', color: '#818cf8' }}>"Isolated (drafting cannot see raw research)"</span>
               </div>
               <button
@@ -271,7 +271,7 @@ export default function AgentPropagation() {
         <div className="glass-panel" style={{ padding: '20px' }}>
           <div className="flex items-center gap-2 mb-4" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
             <Sliders className="w-5 h-5 text-indigo-400" />
-            <h4 className="font-bold text-slate-200" style={{ fontSize: '0.98rem', color: '#f3f4f6', margin: 0 }}>Freshness Indicators (TTL Sliders)</h4>
+            <h4 className="font-bold text-slate-200" style={{ fontSize: '0.98rem', color: 'var(--text-primary)', margin: 0 }}>Freshness Indicators (TTL Sliders)</h4>
           </div>
 
           <div className="flex flex-col gap-6" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
@@ -289,9 +289,9 @@ export default function AgentPropagation() {
                 value={researchFreshness}
                 onChange={(e) => setResearchFreshness(parseInt(e.target.value))}
                 className="w-full h-1.5 bg-slate-950 rounded-lg appearance-none cursor-pointer"
-                style={{ width: '100%', height: '6px', backgroundColor: 'rgba(5,7,12,0.8)', borderRadius: '3px' }}
+                style={{ width: '100%', height: '6px', backgroundColor: 'var(--panel-bg)', borderRadius: '3px' }}
               />
-              <span className="text-[9px] text-slate-500 mt-1 block" style={{ fontSize: '0.58rem', color: '#6b7280', display: 'block', marginTop: '4px' }}>
+              <span className="text-[9px] text-slate-500 mt-1 block" style={{ fontSize: '0.58rem', color: 'var(--text-muted)', display: 'block', marginTop: '4px' }}>
                 {researchFreshness < 40 ? '⚠️ Silent Failure Active - Cascading down the agent pipeline' : 'Research nodes caching metrics match requirements'}
               </span>
             </div>
@@ -309,7 +309,7 @@ export default function AgentPropagation() {
                 value={industryFreshness}
                 onChange={(e) => setIndustryFreshness(parseInt(e.target.value))}
                 className="w-full h-1.5 bg-slate-950 rounded-lg appearance-none cursor-pointer"
-                style={{ width: '100%', height: '6px', backgroundColor: 'rgba(5,7,12,0.8)', borderRadius: '3px' }}
+                style={{ width: '100%', height: '6px', backgroundColor: 'var(--panel-bg)', borderRadius: '3px' }}
               />
             </div>
 
@@ -326,7 +326,7 @@ export default function AgentPropagation() {
                 value={crmFreshness}
                 onChange={(e) => setCrmFreshness(parseInt(e.target.value))}
                 className="w-full h-1.5 bg-slate-950 rounded-lg appearance-none cursor-pointer"
-                style={{ width: '100%', height: '6px', backgroundColor: 'rgba(5,7,12,0.8)', borderRadius: '3px' }}
+                style={{ width: '100%', height: '6px', backgroundColor: 'var(--panel-bg)', borderRadius: '3px' }}
               />
             </div>
 
@@ -337,12 +337,12 @@ export default function AgentPropagation() {
 
       {/* BOTTOM: Context Flow Trace Table */}
       <div className="glass-panel mt-5" style={{ padding: '20px', marginTop: '16px' }}>
-        <h4 className="font-bold text-slate-200 mb-3" style={{ fontSize: '0.98rem', color: '#f3f4f6', marginBottom: '12px', margin: 0 }}>Context Flow Trace Matrix</h4>
+        <h4 className="font-bold text-slate-200 mb-3" style={{ fontSize: '0.98rem', color: 'var(--text-primary)', marginBottom: '12px', margin: 0 }}>Context Flow Trace Matrix</h4>
         
         <div className="border border-slate-900 rounded-lg overflow-hidden" style={{ border: '1px solid rgba(255,255,255,0.03)', borderRadius: '8px' }}>
-          <table className="w-full text-xs text-left text-slate-400 border-collapse" style={{ width: '100%', fontSize: '0.75rem', color: '#9ca3af', borderCollapse: 'collapse' }}>
+          <table className="w-full text-xs text-left text-slate-400 border-collapse" style={{ width: '100%', fontSize: '0.75rem', color: 'var(--text-secondary)', borderCollapse: 'collapse' }}>
             <thead>
-              <tr className="bg-slate-950/80 border-b border-slate-900 font-mono" style={{ backgroundColor: 'rgba(5, 7, 12, 0.5)', borderBottom: '1px solid rgba(255,255,255,0.05)', fontFamily: 'JetBrains Mono', color: '#6b7280' }}>
+              <tr className="bg-slate-950/80 border-b border-slate-900 font-mono" style={{ backgroundColor: 'rgba(5, 7, 12, 0.5)', borderBottom: '1px solid rgba(255,255,255,0.05)', fontFamily: 'JetBrains Mono', color: 'var(--text-muted)' }}>
                 <th className="p-3" style={{ padding: '10px 12px' }}>Agent Node</th>
                 <th className="p-3" style={{ padding: '10px 12px' }}>Context Received (Working Memory)</th>
                 <th className="p-3" style={{ padding: '10px 12px' }}>Context Generated (Output State)</th>
@@ -352,29 +352,29 @@ export default function AgentPropagation() {
             <tbody>
               {/* Orchestrator Row */}
               <tr className="border-b border-slate-900" style={{ borderBottom: '1px solid rgba(255,255,255,0.03)' }}>
-                <td className="p-3 font-semibold text-slate-200" style={{ padding: '10px 12px', color: '#e5e7eb', fontWeight: 600 }}>Orchestrator</td>
+                <td className="p-3 font-semibold text-slate-200" style={{ padding: '10px 12px', color: 'var(--text-primary)', fontWeight: 600 }}>Orchestrator</td>
                 <td className="p-3" style={{ padding: '10px 12px' }}>User query, session state, task decomposition schema</td>
                 <td className="p-3 font-mono text-[10px] text-indigo-400" style={{ padding: '10px 12px', fontFamily: 'JetBrains Mono', fontSize: '0.68rem' }}>Subtask assignments, shared context bundle (tokens: 1840)</td>
-                <td className="p-3 text-slate-500 italic" style={{ padding: '10px 12px', color: '#6b7280', fontStyle: 'italic' }}>None — coordinates all agents</td>
+                <td className="p-3 text-slate-500 italic" style={{ padding: '10px 12px', color: 'var(--text-muted)', fontStyle: 'italic' }}>None — coordinates all agents</td>
               </tr>
               
               {/* Research Row */}
               <tr className="border-b border-slate-900" style={{ borderBottom: '1px solid rgba(255,255,255,0.03)' }}>
-                <td className="p-3 font-semibold text-slate-200" style={{ padding: '10px 12px', color: '#e5e7eb', fontWeight: 600 }}>Research Agent</td>
+                <td className="p-3 font-semibold text-slate-200" style={{ padding: '10px 12px', color: 'var(--text-primary)', fontWeight: 600 }}>Research Agent</td>
                 <td className="p-3" style={{ padding: '10px 12px' }}>
                   {orchToResearch ? 'Full shared context (1840 tokens)' : 'Static local index context (150 tokens)'}
                 </td>
                 <td className="p-3 font-mono text-[10px] text-indigo-400" style={{ padding: '10px 12px', fontFamily: 'JetBrains Mono', fontSize: '0.68rem' }}>
                   PharmaCorp research summary (6 key findings, 420 tokens)
                 </td>
-                <td className="p-3 text-slate-400" style={{ padding: '10px 12px', color: '#9ca3af' }}>
+                <td className="p-3 text-slate-400" style={{ padding: '10px 12px', color: 'var(--text-secondary)' }}>
                   Cannot write to Analysis Agent working memory directly
                 </td>
               </tr>
 
               {/* Analysis Row */}
               <tr className="border-b border-slate-900" style={{ borderBottom: '1px solid rgba(255,255,255,0.03)' }}>
-                <td className="p-3 font-semibold text-slate-200" style={{ padding: '10px 12px', color: '#e5e7eb', fontWeight: 600 }}>Analysis Agent</td>
+                <td className="p-3 font-semibold text-slate-200" style={{ padding: '10px 12px', color: 'var(--text-primary)', fontWeight: 600 }}>Analysis Agent</td>
                 <td className="p-3" style={{ padding: '10px 12px' }}>
                   {!researchToAnalysis ? 'No research context available (0 tokens)' : (
                     researchFreshness < 50 ? (
@@ -385,15 +385,15 @@ export default function AgentPropagation() {
                 <td className="p-3 font-mono text-[10px] text-indigo-400" style={{ padding: '10px 12px', fontFamily: 'JetBrains Mono', fontSize: '0.68rem' }}>
                   Risk matrix, 3 priority recommendations (280 tokens)
                 </td>
-                <td className="p-3 text-slate-400" style={{ padding: '10px 12px', color: '#9ca3af' }}>
+                <td className="p-3 text-slate-400" style={{ padding: '10px 12px', color: 'var(--text-secondary)' }}>
                   Cannot access raw CRM data directly
                 </td>
               </tr>
 
               {/* Drafting Row */}
               <tr>
-                <td className="p-3 font-semibold text-slate-200" style={{ padding: '10px 12px', color: '#e5e7eb', fontWeight: 600 }}>Drafting Agent</td>
-                <td className="p-3 text-slate-300" style={{ padding: '10px 12px', color: '#d1d5db' }}>
+                <td className="p-3 font-semibold text-slate-200" style={{ padding: '10px 12px', color: 'var(--text-primary)', fontWeight: 600 }}>Drafting Agent</td>
+                <td className="p-3 text-slate-300" style={{ padding: '10px 12px', color: 'var(--text-secondary)' }}>
                   {!analysisToDrafting ? 'No input context from analysis core (0 tokens)' : (
                     researchToDrafting ? 'Meeting brief + raw research data — potential over-specification risk' : 'Meeting brief based on analysis only'
                   )}
@@ -401,7 +401,7 @@ export default function AgentPropagation() {
                 <td className="p-3 font-mono text-[10px] text-indigo-400" style={{ padding: '10px 12px', fontFamily: 'JetBrains Mono', fontSize: '0.68rem' }}>
                   Final meeting prep document
                 </td>
-                <td className="p-3 text-slate-400 font-semibold" style={{ padding: '10px 12px', color: '#9ca3af' }}>
+                <td className="p-3 text-slate-400 font-semibold" style={{ padding: '10px 12px', color: 'var(--text-secondary)' }}>
                   {researchToDrafting ? 'None — raw research data bypassed' : 'Read-only access to Analysis output layer'}
                 </td>
               </tr>
@@ -424,7 +424,7 @@ export default function AgentPropagation() {
       }}>
         <div className="flex gap-3" style={{ display: 'flex', gap: '12px' }}>
           <div className="insight-indicator text-xs font-mono font-bold text-indigo-400 uppercase tracking-widest" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.72rem', color: '#6366f1', letterSpacing: '1px' }}>KEY INSIGHT</div>
-          <p className="insight-text text-sm leading-relaxed" style={{ fontSize: '0.88rem', color: '#d1d5db', margin: 0, lineHeight: '1.5' }}>
+          <p className="insight-text text-sm leading-relaxed" style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', margin: 0, lineHeight: '1.5' }}>
             In multi-agent systems, what each agent knows is an architectural decision. Context propagation rules define agent behavior more than prompts do. Stale context propagates silently — it looks like hallucination but is actually an infrastructure failure.
           </p>
         </div>

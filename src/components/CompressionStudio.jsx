@@ -312,11 +312,11 @@ Return ONLY JSON.`,
 
   const getCategoryColor = (cat) => {
     const c = cat.toLowerCase();
-    if (c.includes('risk')) return 'text-red-400 bg-red-500/10 border-red-500/20';
-    if (c.includes('infra') || c.includes('sys')) return 'text-indigo-400 bg-indigo-500/10 border-indigo-500/20';
-    if (c.includes('lead')) return 'text-cyan-400 bg-cyan-500/10 border-cyan-500/20';
-    if (c.includes('fin')) return 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20';
-    return 'text-amber-400 bg-amber-500/10 border-amber-500/20';
+    if (c.includes('risk')) return 'badge-theme-red';
+    if (c.includes('infra') || c.includes('sys')) return 'badge-theme-profile';
+    if (c.includes('lead')) return 'badge-theme-web';
+    if (c.includes('fin')) return 'badge-theme-crm';
+    return 'badge-theme-docs';
   };
 
   return (
@@ -362,7 +362,7 @@ Return ONLY JSON.`,
           <div className="flex justify-between items-center mb-3" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
             <div className="flex items-center gap-2" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <FileText className="w-5 h-5 text-indigo-400" />
-              <h4 className="font-bold text-slate-200" style={{ fontSize: '0.98rem', color: '#f3f4f6', margin: 0 }}>Stage 1 · Raw Document Context (~780 tokens)</h4>
+              <h4 className="font-bold text-slate-200" style={{ fontSize: '0.98rem', color: 'var(--text-primary)', margin: 0 }}>Stage 1 · Raw Document Context (~780 tokens)</h4>
             </div>
             {stage > 1 && (
               <button
@@ -385,9 +385,9 @@ Return ONLY JSON.`,
                   fontSize: '0.75rem',
                   lineHeight: '1.45',
                   borderRadius: '10px',
-                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  border: '1px solid var(--panel-border)',
                   backgroundColor: 'rgba(5, 7, 12, 0.7)',
-                  color: '#d1d5db',
+                  color: 'var(--text-secondary)',
                   padding: '14px',
                   resize: 'none'
                 }}
@@ -407,7 +407,7 @@ Return ONLY JSON.`,
                   border: 'none',
                   borderRadius: '8px',
                   backgroundColor: '#6366f1',
-                  color: '#fff',
+                  color: 'var(--text-primary)',
                   cursor: 'pointer',
                   boxShadow: '0 4px 15px rgba(99, 102, 241, 0.2)',
                   display: 'flex',
@@ -431,7 +431,7 @@ Return ONLY JSON.`,
           ) : (
             <div className="p-3 bg-slate-950/50 rounded-lg text-xs font-mono text-slate-500 line-clamp-2"
               style={{
-                fontFamily: 'JetBrains Mono', fontSize: '0.72rem', color: '#6b7280', padding: '10px', backgroundColor: 'rgba(5, 7, 12, 0.4)', borderRadius: '6px',
+                fontFamily: 'JetBrains Mono', fontSize: '0.72rem', color: 'var(--text-muted)', padding: '10px', backgroundColor: 'rgba(5, 7, 12, 0.4)', borderRadius: '6px',
                 textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap'
               }}
             >
@@ -443,22 +443,22 @@ Return ONLY JSON.`,
         {/* STAGE 2: DISTILLATION RESULTS */}
         {stage >= 2 && distillResult && (
           <div className="glass-panel" style={{ padding: '20px' }}>
-            <h4 className="font-bold text-slate-200 mb-4" style={{ fontSize: '0.98rem', color: '#f3f4f6', marginBottom: '16px', margin: 0 }}>Stage 2 · AI Context Distillation</h4>
+            <h4 className="font-bold text-slate-200 mb-4" style={{ fontSize: '0.98rem', color: 'var(--text-primary)', marginBottom: '16px', margin: 0 }}>Stage 2 · AI Context Distillation</h4>
             
             <div className="grid-layout" style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '20px' }}>
               {/* Distilled Facts bullet list */}
               <div>
-                <span className="text-[10px] font-mono text-slate-500 block mb-2" style={{ fontSize: '0.68rem', fontFamily: 'JetBrains Mono', color: '#6b7280', display: 'block', marginBottom: '8px' }}>Grounded Distilled Insights</span>
+                <span className="text-[10px] font-mono text-slate-500 block mb-2" style={{ fontSize: '0.68rem', fontFamily: 'JetBrains Mono', color: 'var(--text-muted)', display: 'block', marginBottom: '8px' }}>Grounded Distilled Insights</span>
                 <ul className="flex flex-col gap-2 list-none p-0" style={{ display: 'flex', flexDirection: 'column', gap: '8px', padding: 0 }}>
                   {distillResult.distilled_facts?.map((fact, idx) => (
                     <li key={idx} className="flex gap-2.5 items-start text-xs text-slate-300 bg-slate-950/20 p-2.5 rounded-lg border border-slate-900/60"
                       style={{
-                        display: 'flex', gap: '10px', padding: '8px 10px', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.02)', backgroundColor: 'rgba(5, 7, 12, 0.15)', fontSize: '0.78rem', color: '#d1d5db'
+                        display: 'flex', gap: '10px', padding: '8px 10px', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.02)', backgroundColor: 'rgba(5, 7, 12, 0.15)', fontSize: '0.78rem', color: 'var(--text-secondary)'
                       }}
                     >
-                      <span className={`text-[9px] font-mono border px-1.5 py-0.2 rounded font-bold uppercase ${getCategoryColor(fact.category)}`}
+                      <span className={`text-[9px] font-mono px-1.5 py-0.5 rounded font-bold uppercase ${getCategoryColor(fact.category)}`}
                         style={{
-                          fontSize: '0.58rem', fontFamily: 'JetBrains Mono', border: '1px solid', padding: '1px 4px', borderRadius: '4px', display: 'inline-block'
+                          fontSize: '0.58rem', fontFamily: 'JetBrains Mono', display: 'inline-block'
                         }}
                       >
                         {fact.category}
@@ -485,20 +485,20 @@ Return ONLY JSON.`,
                   <span className="text-xs uppercase font-mono tracking-wider text-indigo-400 font-bold" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.72rem', color: '#818cf8' }}>Distillation Stats</span>
                   <div className="flex justify-between items-center text-xs" style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem' }}>
                     <span className="text-slate-400">Context Delta</span>
-                    <span className="font-mono text-indigo-300 font-semibold" style={{ fontFamily: 'JetBrains Mono', color: '#a5b4fc', fontWeight: 'semibold' }}>780 t → 118 t</span>
+                    <span className="font-mono text-indigo-300 font-semibold" style={{ fontFamily: 'JetBrains Mono', color: 'var(--neon-purple)', fontWeight: 'semibold' }}>780 t → 118 t</span>
                   </div>
                   <div className="flex justify-between items-center text-xs" style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem' }}>
                     <span className="text-slate-400">Compression Ratio</span>
-                    <span className="font-mono text-cyan-400 font-bold text-sm" style={{ fontFamily: 'JetBrains Mono', color: '#22d3ee', fontWeight: 'bold', fontSize: '0.88rem' }}>{distillResult.compression_ratio || "85% reduction"}</span>
+                    <span className="font-mono text-cyan-400 font-bold text-sm" style={{ fontFamily: 'JetBrains Mono', color: 'var(--neon-cyan)', fontWeight: 'bold', fontSize: '0.88rem' }}>{distillResult.compression_ratio || "85% reduction"}</span>
                   </div>
                   <div className="flex justify-between items-center text-xs" style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem' }}>
                     <span className="text-slate-400">Signal Preserved</span>
-                    <span className="font-mono text-emerald-400 font-bold" style={{ fontFamily: 'JetBrains Mono', color: '#34d399', fontWeight: 'bold' }}>{distillResult.signal_preserved || "94%"}</span>
+                    <span className="font-mono text-emerald-400 font-bold" style={{ fontFamily: 'JetBrains Mono', color: 'var(--neon-green)', fontWeight: 'bold' }}>{distillResult.signal_preserved || "94%"}</span>
                   </div>
                 </div>
 
                 {/* Noise Removed Accordion */}
-                <div className="border border-slate-800 bg-slate-950/20 rounded-xl" style={{ border: '1px solid rgba(255, 255, 255, 0.05)', backgroundColor: 'rgba(5, 7, 12, 0.1)', borderRadius: '10px' }}>
+                <div className="border border-slate-800 bg-slate-950/20 rounded-xl" style={{ border: '1px solid var(--panel-border)', backgroundColor: 'rgba(5, 7, 12, 0.1)', borderRadius: '10px' }}>
                   <button
                     onClick={() => setNoiseExpanded(!noiseExpanded)}
                     className="w-full p-3 flex justify-between items-center text-xs font-semibold text-slate-400 hover:text-slate-200"
@@ -514,7 +514,7 @@ Return ONLY JSON.`,
                       }}
                     >
                       {distillResult.noise_removed?.map((noise, idx) => (
-                        <p key={idx} className="text-[10px] text-slate-500 leading-normal" style={{ fontSize: '0.68rem', color: '#6b7280', lineHeight: '1.3', margin: 0 }}>
+                        <p key={idx} className="text-[10px] text-slate-500 leading-normal" style={{ fontSize: '0.68rem', color: 'var(--text-muted)', lineHeight: '1.3', margin: 0 }}>
                           • {noise}
                         </p>
                       ))}
@@ -556,8 +556,8 @@ Return ONLY JSON.`,
               {/* Left Column: Raw Answer */}
               <div className="glass-panel" style={{ padding: '20px', display: 'flex', flexDirection: 'column' }}>
                 <div className="flex justify-between items-center mb-3" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-                  <span className="text-xs font-bold text-slate-200" style={{ fontSize: '0.78rem', color: '#e5e7eb' }}>A · Raw Context Response</span>
-                  <span className="font-mono text-[9px] text-slate-500 bg-slate-900 border border-slate-800 px-2 py-0.5 rounded" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.65rem', color: '#6b7280', backgroundColor: 'rgba(5, 7, 12, 0.4)', padding: '1px 6px', borderRadius: '4px' }}>
+                  <span className="text-xs font-bold text-slate-200" style={{ fontSize: '0.78rem', color: 'var(--text-primary)' }}>A · Raw Context Response</span>
+                  <span className="font-mono text-[9px] text-slate-500 bg-slate-900 border border-slate-800 px-2 py-0.5 rounded" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.65rem', color: 'var(--text-muted)', backgroundColor: 'rgba(5, 7, 12, 0.4)', padding: '1px 6px', borderRadius: '4px' }}>
                     780 tokens injected
                   </span>
                 </div>
@@ -568,7 +568,7 @@ Return ONLY JSON.`,
                   </div>
                 ) : (
                   <div className="text-area-response text-xs text-slate-300 font-sans leading-relaxed flex-1 overflow-y-auto whitespace-pre-line"
-                    style={{ fontSize: '0.78rem', color: '#d1d5db', lineHeight: '1.45', maxHeight: '240px', overflowY: 'auto' }}
+                    style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', lineHeight: '1.45', maxHeight: '240px', overflowY: 'auto' }}
                   >
                     {rawAnswer}
                   </div>
@@ -590,7 +590,7 @@ Return ONLY JSON.`,
                   </div>
                 ) : (
                   <div className="text-area-response text-xs text-slate-300 font-sans leading-relaxed flex-1 overflow-y-auto whitespace-pre-line"
-                    style={{ fontSize: '0.78rem', color: '#d1d5db', lineHeight: '1.45', maxHeight: '240px', overflowY: 'auto' }}
+                    style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', lineHeight: '1.45', maxHeight: '240px', overflowY: 'auto' }}
                   >
                     {distilledAnswer}
                   </div>
@@ -602,7 +602,7 @@ Return ONLY JSON.`,
             {/* Judge verdict & radar chart */}
             {judgeResult && (
               <div className="glass-panel" style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                <h4 className="font-bold text-slate-200" style={{ fontSize: '0.98rem', color: '#f3f4f6', margin: 0 }}>Judge Metrics Evaluation</h4>
+                <h4 className="font-bold text-slate-200" style={{ fontSize: '0.98rem', color: 'var(--text-primary)', margin: 0 }}>Judge Metrics Evaluation</h4>
                 
                 <div className="grid-layout" style={{ display: 'grid', gridTemplateColumns: '0.9fr 1.1fr', gap: '20px', alignItems: 'center' }}>
                   
@@ -623,7 +623,7 @@ Return ONLY JSON.`,
                   {/* Verdict and rationale */}
                   <div className="flex flex-col gap-3" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                     <div className="flex items-center gap-2" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <span className="text-[10px] font-mono uppercase tracking-widest text-slate-500" style={{ fontSize: '0.62rem', fontFamily: 'JetBrains Mono', color: '#6b7280' }}>WINNER VERDICT</span>
+                      <span className="text-[10px] font-mono uppercase tracking-widest text-slate-500" style={{ fontSize: '0.62rem', fontFamily: 'JetBrains Mono', color: 'var(--text-muted)' }}>WINNER VERDICT</span>
                       <span className="w-1.5 h-1.5 rounded-full bg-slate-700"></span>
                       <span className="text-xs font-bold text-cyan-300 uppercase font-mono" style={{ fontSize: '0.72rem', color: '#22d3ee', fontFamily: 'JetBrains Mono', fontWeight: 'bold' }}>
                         {judgeResult.winner === 'distilled' ? 'Response B (Distilled)' : 'Response A (Raw)'}
@@ -663,7 +663,7 @@ Return ONLY JSON.`,
       }}>
         <div className="flex gap-3" style={{ display: 'flex', gap: '12px' }}>
           <div className="insight-indicator text-xs font-mono font-bold text-indigo-400 uppercase tracking-widest" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.72rem', color: '#6366f1', letterSpacing: '1px' }}>KEY INSIGHT</div>
-          <p className="insight-text text-sm leading-relaxed" style={{ fontSize: '0.88rem', color: '#d1d5db', margin: 0, lineHeight: '1.5' }}>
+          <p className="insight-text text-sm leading-relaxed" style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', margin: 0, lineHeight: '1.5' }}>
             More context ≠ better output. Noise degrades reasoning. Structured context compression that optimizes signal-to-noise ratio consistently outperforms raw context injection — avoiding the 'lost in the middle' failure mode.
           </p>
         </div>

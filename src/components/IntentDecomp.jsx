@@ -147,25 +147,24 @@ Return ONLY valid JSON. No preamble, no markdown.`;
 
   const getSourceBadgeColor = (source) => {
     const s = source.toLowerCase();
-    if (s.includes('crm')) return { bg: 'bg-emerald-500/10', border: 'border-emerald-500/20', text: 'text-emerald-400' };
-    if (s.includes('web')) return { bg: 'bg-blue-500/10', border: 'border-blue-500/20', text: 'text-blue-400' };
-    if (s.includes('doc') || s.includes('store') || s.includes('kb')) return { bg: 'bg-amber-500/10', border: 'border-amber-500/20', text: 'text-amber-400' };
-    return { bg: 'bg-purple-500/10', border: 'border-purple-500/20', text: 'text-purple-400' };
+    if (s.includes('crm')) return 'badge-theme-crm';
+    if (s.includes('web')) return 'badge-theme-web';
+    if (s.includes('doc') || s.includes('store') || s.includes('kb')) return 'badge-theme-docs';
+    return 'badge-theme-profile';
   };
 
   const getFreshnessColor = (freshness) => {
     const f = freshness.toLowerCase();
-    if (f.includes('real-time') || f.includes('live')) return { bg: 'bg-rose-500/10', text: 'text-rose-400' };
-    if (f.includes('24h')) return { bg: 'bg-orange-500/10', text: 'text-orange-400' };
-    if (f.includes('7d')) return { bg: 'bg-yellow-500/10', text: 'text-yellow-400' };
-    return { bg: 'bg-slate-500/10', text: 'text-slate-400' };
+    if (f.includes('real-time') || f.includes('live')) return 'badge-theme-red';
+    if (f.includes('24h') || f.includes('7d')) return 'badge-theme-docs';
+    return 'badge-theme-muted';
   };
 
   const getPriorityColor = (priority) => {
     const p = priority.toLowerCase();
-    if (p === 'critical') return 'text-red-400 bg-red-500/10 border-red-500/20';
-    if (p === 'high') return 'text-orange-400 bg-orange-500/10 border-orange-500/20';
-    return 'text-sky-400 bg-sky-500/10 border-sky-500/20';
+    if (p === 'critical') return 'badge-theme-red';
+    if (p === 'high') return 'badge-theme-docs';
+    return 'badge-theme-web';
   };
 
   return (
@@ -174,7 +173,7 @@ Return ONLY valid JSON. No preamble, no markdown.`;
         
         {/* LEFT PANEL: Input Panel */}
         <div className="glass-panel" style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          <h4 className="font-bold text-slate-200" style={{ fontSize: '0.98rem', color: '#f3f4f6', margin: 0 }}>Step 1 · User Objective</h4>
+          <h4 className="font-bold text-slate-200" style={{ fontSize: '0.98rem', color: 'var(--text-primary)', margin: 0 }}>Step 1 · User Objective</h4>
           <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', gap: '12px' }}>
             <textarea
               className="text-area-input w-full p-4 rounded-xl text-sm border border-slate-800 bg-slate-950/80 focus:border-indigo-500 outline-none font-sans"
@@ -185,8 +184,8 @@ Return ONLY valid JSON. No preamble, no markdown.`;
                 padding: '14px',
                 borderRadius: '10px',
                 backgroundColor: 'rgba(5, 7, 12, 0.7)',
-                border: '1px solid rgba(255, 255, 255, 0.08)',
-                color: '#fff',
+                border: '1px solid var(--panel-border)',
+                color: 'var(--text-primary)',
                 fontSize: '0.85rem',
                 lineHeight: '1.45',
                 resize: 'none',
@@ -215,7 +214,7 @@ Return ONLY valid JSON. No preamble, no markdown.`;
                 cursor: loading ? 'not-allowed' : 'pointer',
                 backgroundColor: loading ? 'rgba(255, 255, 255, 0.04)' : '#6366f1',
                 backgroundImage: loading ? 'none' : 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)',
-                color: '#fff',
+                color: 'var(--text-primary)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -243,10 +242,10 @@ Return ONLY valid JSON. No preamble, no markdown.`;
             style={{
               padding: '12px 14px',
               borderRadius: '10px',
-              border: '1px solid rgba(255, 255, 255, 0.05)',
+              border: '1px solid var(--panel-border)',
               backgroundColor: 'rgba(5, 7, 12, 0.2)',
               fontSize: '0.75rem',
-              color: '#9ca3af',
+              color: 'var(--text-secondary)',
               lineHeight: '1.45'
             }}
           >
@@ -257,7 +256,7 @@ Return ONLY valid JSON. No preamble, no markdown.`;
         {/* CENTER PANEL: Live AI Decompiled Output */}
         <div className="glass-panel" style={{ padding: '20px', display: 'flex', flexDirection: 'column' }}>
           <div className="flex justify-between items-center mb-4" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-            <h4 className="font-bold text-slate-200" style={{ fontSize: '0.98rem', color: '#f3f4f6', margin: 0 }}>Step 2 · Decompiled Context Requirements</h4>
+            <h4 className="font-bold text-slate-200" style={{ fontSize: '0.98rem', color: 'var(--text-primary)', margin: 0 }}>Step 2 · Decompiled Context Requirements</h4>
             {result && (
               <span className="font-mono text-xs text-indigo-400 bg-indigo-500/10 px-2 py-0.5 border border-indigo-500/20 rounded" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.72rem', color: '#818cf8', backgroundColor: 'rgba(99, 102, 241, 0.1)', border: '1px solid rgba(99, 102, 241, 0.2)', padding: '2px 8px', borderRadius: '4px' }}>
                 Budgeted: {result.total_estimated_tokens} tokens
@@ -307,12 +306,12 @@ Return ONLY valid JSON. No preamble, no markdown.`;
                 border: '1px dashed rgba(255, 255, 255, 0.08)',
                 borderRadius: '12px',
                 backgroundColor: 'rgba(5, 7, 12, 0.1)',
-                color: '#6b7280'
+                color: 'var(--text-muted)'
               }}
             >
               <Compass className="w-10 h-10 text-slate-700 mb-3 animate-pulse" />
-              <p className="text-sm font-semibold text-slate-400 mb-1" style={{ color: '#9ca3af', fontSize: '0.85rem', fontWeight: 600 }}>Engine Awaiting Execution</p>
-              <p className="text-xs text-slate-500 max-w-[200px]" style={{ fontSize: '0.72rem', color: '#6b7280' }}>Click "Decompose Intent" to trigger the Claude parser model.</p>
+              <p className="text-sm font-semibold text-slate-400 mb-1" style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>Engine Awaiting Execution</p>
+              <p className="text-xs text-slate-500 max-w-[200px]" style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Click "Decompose Intent" to trigger the Claude parser model.</p>
             </div>
           )}
 
@@ -321,7 +320,7 @@ Return ONLY valid JSON. No preamble, no markdown.`;
             <div className="flex-1 flex flex-col gap-3 justify-center" style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', gap: '12px', justifyContent: 'center' }}>
               {[1, 2, 3].map((n) => (
                 <div key={n} className="border border-slate-800 bg-slate-900/20 rounded-xl p-4 flex flex-col gap-2 animate-pulse"
-                  style={{ border: '1px solid rgba(255, 255, 255, 0.05)', backgroundColor: 'rgba(13, 16, 26, 0.1)', padding: '14px', borderRadius: '10px', display: 'flex', flexDirection: 'column', gap: '8px' }}
+                  style={{ border: '1px solid var(--panel-border)', backgroundColor: 'rgba(13, 16, 26, 0.1)', padding: '14px', borderRadius: '10px', display: 'flex', flexDirection: 'column', gap: '8px' }}
                 >
                   <div className="h-4 bg-slate-800 rounded w-1/3"></div>
                   <div className="h-3 bg-slate-800 rounded w-5/6"></div>
@@ -350,7 +349,7 @@ Return ONLY valid JSON. No preamble, no markdown.`;
                     key={idx}
                     className="border border-slate-800/80 bg-slate-900/10 hover:bg-slate-900/20 rounded-xl p-3.5 flex flex-col gap-2.5 transition-all duration-300 hover:border-slate-700/60"
                     style={{
-                      border: '1px solid rgba(255, 255, 255, 0.05)',
+                      border: '1px solid var(--panel-border)',
                       backgroundColor: 'rgba(13, 16, 26, 0.15)',
                       padding: '12px 14px',
                       borderRadius: '10px',
@@ -361,48 +360,36 @@ Return ONLY valid JSON. No preamble, no markdown.`;
                     }}
                   >
                     <div className="flex justify-between items-start" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                      <span className="font-bold text-slate-200 text-sm" style={{ fontSize: '0.85rem', fontWeight: 700, color: '#e5e7eb' }}>
+                      <span className="font-bold text-slate-200 text-sm" style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-primary)' }}>
                         {need.category}
                       </span>
-                      <span className="font-mono text-[10px] text-slate-400 bg-slate-800/40 px-2 py-0.5 rounded border border-slate-700/30" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.68rem', color: '#9ca3af', backgroundColor: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.05)', padding: '1px 6px', borderRadius: '4px' }}>
+                      <span className="font-mono text-[10px] text-slate-400 bg-slate-800/40 px-2 py-0.5 rounded border border-slate-700/30" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.68rem', color: 'var(--text-secondary)', backgroundColor: 'rgba(255, 255, 255, 0.03)', border: '1px solid var(--panel-border)', padding: '1px 6px', borderRadius: '4px' }}>
                         {need.token_budget} tokens
                       </span>
                     </div>
 
-                    <p className="text-slate-400 text-xs leading-relaxed" style={{ color: '#9ca3af', fontSize: '0.78rem', lineHeight: '1.4' }}>
+                    <p className="text-slate-400 text-xs leading-relaxed" style={{ color: 'var(--text-secondary)', fontSize: '0.78rem', lineHeight: '1.4' }}>
                       {need.requirement}
                     </p>
 
                     <div className="flex flex-wrap gap-2 mt-1" style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '4px' }}>
                       {/* Source Type Badge */}
-                      <span className={`text-[10px] font-semibold border px-2 py-0.5 rounded-md ${srcTheme.bg} ${srcTheme.border} ${srcTheme.text}`}
-                        style={{
-                          fontSize: '0.65rem', fontWeight: 600, border: '1px solid', padding: '2px 8px', borderRadius: '6px',
-                          borderColor: srcTheme.border.replace('border-', '').replace('/20', '') || 'rgba(255,255,255,0.08)',
-                          color: srcTheme.text.replace('text-', '') || '#fff',
-                          backgroundColor: 'rgba(255,255,255,0.03)'
-                        }}
+                      <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-md ${srcTheme}`}
+                        style={{ fontSize: '0.65rem', fontWeight: 600, padding: '2px 8px', borderRadius: '6px' }}
                       >
                         {need.source_type}
                       </span>
 
                       {/* Freshness Badge */}
-                      <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-md ${freshTheme.bg} ${freshTheme.text}`}
-                        style={{
-                          fontSize: '0.65rem', fontWeight: 600, padding: '2px 8px', borderRadius: '6px',
-                          color: freshTheme.text.replace('text-', '') || '#fff',
-                          backgroundColor: 'rgba(255,255,255,0.03)'
-                        }}
+                      <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-md ${freshTheme}`}
+                        style={{ fontSize: '0.65rem', fontWeight: 600, padding: '2px 8px', borderRadius: '6px' }}
                       >
                         {need.freshness_required}
                       </span>
 
                       {/* Priority Badge */}
-                      <span className={`text-[10px] font-semibold border px-2 py-0.5 rounded-md ${prioClass}`}
-                        style={{
-                          fontSize: '0.65rem', fontWeight: 600, border: '1px solid', padding: '2px 8px', borderRadius: '6px',
-                          backgroundColor: 'rgba(255,255,255,0.03)'
-                        }}
+                      <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-md ${prioClass}`}
+                        style={{ fontSize: '0.65rem', fontWeight: 600, padding: '2px 8px', borderRadius: '6px' }}
                       >
                         {need.priority}
                       </span>
@@ -417,14 +404,14 @@ Return ONLY valid JSON. No preamble, no markdown.`;
         {/* RIGHT PANEL: Aha Insights & MCP Mapping */}
         <div className="glass-panel" style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
           <div>
-            <h4 className="font-bold text-slate-200 mb-4" style={{ fontSize: '0.98rem', color: '#f3f4f6', marginBottom: '14px', margin: 0 }}>What just happened?</h4>
+            <h4 className="font-bold text-slate-200 mb-4" style={{ fontSize: '0.98rem', color: 'var(--text-primary)', marginBottom: '14px', margin: 0 }}>What just happened?</h4>
             
             <div className="flex flex-col gap-4" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <div className="insight-block" style={{ display: 'flex', gap: '10px' }}>
                 <div className="insight-ico text-cyan-400 mt-0.5" style={{ color: '#22d3ee' }}>🔍</div>
                 <div>
-                  <h5 className="text-xs font-bold text-slate-300" style={{ fontSize: '0.78rem', color: '#d1d5db', margin: 0 }}>This happened BEFORE any retrieval</h5>
-                  <p className="text-[11px] text-slate-400 leading-relaxed mt-0.5" style={{ fontSize: '0.72rem', color: '#9ca3af', lineHeight: '1.35', margin: 0 }}>
+                  <h5 className="text-xs font-bold text-slate-300" style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', margin: 0 }}>This happened BEFORE any retrieval</h5>
+                  <p className="text-[11px] text-slate-400 leading-relaxed mt-0.5" style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', lineHeight: '1.35', margin: 0 }}>
                     The system hasn't touched a vector database yet. It first asked: what do we need? This step is absent in most RAG implementations.
                   </p>
                 </div>
@@ -433,8 +420,8 @@ Return ONLY valid JSON. No preamble, no markdown.`;
               <div className="insight-block" style={{ display: 'flex', gap: '10px' }}>
                 <div className="insight-ico text-cyan-400 mt-0.5" style={{ color: '#22d3ee' }}>🎯</div>
                 <div>
-                  <h5 className="text-xs font-bold text-slate-300" style={{ fontSize: '0.78rem', color: '#d1d5db', margin: 0 }}>Intent ≠ Query</h5>
-                  <p className="text-[11px] text-slate-400 leading-relaxed mt-0.5" style={{ fontSize: '0.72rem', color: '#9ca3af', lineHeight: '1.35', margin: 0 }}>
+                  <h5 className="text-xs font-bold text-slate-300" style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', margin: 0 }}>Intent ≠ Query</h5>
+                  <p className="text-[11px] text-slate-400 leading-relaxed mt-0.5" style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', lineHeight: '1.35', margin: 0 }}>
                     The user said 7 words. The system identified 6+ distinct information requirements across multiple source types with different freshness constraints. A vector search would have missed most of these.
                   </p>
                 </div>
@@ -443,8 +430,8 @@ Return ONLY valid JSON. No preamble, no markdown.`;
               <div className="insight-block" style={{ display: 'flex', gap: '10px' }}>
                 <div className="insight-ico text-cyan-400 mt-0.5" style={{ color: '#22d3ee' }}>⚡</div>
                 <div>
-                  <h5 className="text-xs font-bold text-slate-300" style={{ fontSize: '0.78rem', color: '#d1d5db', margin: 0 }}>This schema drives everything downstream</h5>
-                  <p className="text-[11px] text-slate-400 leading-relaxed mt-0.5" style={{ fontSize: '0.72rem', color: '#9ca3af', lineHeight: '1.35', margin: 0 }}>
+                  <h5 className="text-xs font-bold text-slate-300" style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', margin: 0 }}>This schema drives everything downstream</h5>
+                  <p className="text-[11px] text-slate-400 leading-relaxed mt-0.5" style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', lineHeight: '1.35', margin: 0 }}>
                     Every retrieval, every compression decision, every token allocation in modules 3 and 4 flows from this decomposition. This is the architectural root.
                   </p>
                 </div>
@@ -455,7 +442,7 @@ Return ONLY valid JSON. No preamble, no markdown.`;
           {/* MCP Diagram */}
           <div className="border border-slate-800 bg-slate-950/40 rounded-xl p-3.5 flex flex-col gap-3"
             style={{
-              border: '1px solid rgba(255, 255, 255, 0.05)',
+              border: '1px solid var(--panel-border)',
               backgroundColor: 'rgba(5, 7, 12, 0.25)',
               borderRadius: '10px',
               padding: '12px 14px',
@@ -466,7 +453,7 @@ Return ONLY valid JSON. No preamble, no markdown.`;
             }}
           >
             <span className="font-semibold text-xs text-indigo-300" style={{ fontSize: '0.75rem', fontWeight: 600, color: '#a5b4fc' }}>The MCP Connection</span>
-            <p className="text-[10px] text-slate-400 leading-normal" style={{ fontSize: '0.7rem', color: '#9ca3af', lineHeight: '1.3' }}>
+            <p className="text-[10px] text-slate-400 leading-normal" style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', lineHeight: '1.3' }}>
               In production, each source_type maps to a standardized interface (Model Context Protocol). CRM data, live web search, document stores — each is a context provider with a contract. The decomposition tells you which providers to invoke.
             </p>
             
@@ -479,7 +466,7 @@ Return ONLY valid JSON. No preamble, no markdown.`;
                 padding: '8px',
                 borderRadius: '8px',
                 backgroundColor: 'rgba(5, 7, 12, 0.6)',
-                border: '1px solid rgba(255, 255, 255, 0.05)',
+                border: '1px solid var(--panel-border)',
                 fontSize: '0.62rem'
               }}
             >
@@ -513,7 +500,7 @@ Return ONLY valid JSON. No preamble, no markdown.`;
       }}>
         <div className="flex gap-3" style={{ display: 'flex', gap: '12px' }}>
           <div className="insight-indicator text-xs font-mono font-bold text-indigo-400 uppercase tracking-widest" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.72rem', color: '#6366f1', letterSpacing: '1px' }}>KEY INSIGHT</div>
-          <p className="insight-text text-sm leading-relaxed" style={{ fontSize: '0.88rem', color: '#d1d5db', margin: 0, lineHeight: '1.5' }}>
+          <p className="insight-text text-sm leading-relaxed" style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', margin: 0, lineHeight: '1.5' }}>
             <strong>Intent ≠ Query:</strong> A naive RAG search takes the query literally and conducts a single vector match. Intent Decomposition maps the user signal to a structured blueprint of diverse queries, freshness limits, and priority weights across multiple source domains.
           </p>
         </div>

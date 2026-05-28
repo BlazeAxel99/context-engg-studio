@@ -245,10 +245,10 @@ export default function BudgetOptimizer({ onOptimizerSelect }) {
   };
 
   const sourceColors = {
-    CRM: 'text-emerald-400 border-emerald-500/20 bg-emerald-500/5',
-    Web: 'text-blue-400 border-blue-500/20 bg-blue-500/5',
-    Docs: 'text-amber-400 border-amber-500/20 bg-amber-500/5',
-    Profile: 'text-purple-400 border-purple-500/20 bg-purple-500/5'
+    CRM: 'badge-theme-crm',
+    Web: 'badge-theme-web',
+    Docs: 'badge-theme-docs',
+    Profile: 'badge-theme-profile'
   };
 
   return (
@@ -270,7 +270,7 @@ export default function BudgetOptimizer({ onOptimizerSelect }) {
             {/* Horizontal progress bar */}
             <div className="progress-bg w-full h-3 rounded-full bg-slate-950/80 border border-slate-800/80 overflow-hidden"
               style={{
-                width: '100%', height: '12px', borderRadius: '6px', backgroundColor: 'rgba(5, 7, 12, 0.8)', border: '1px solid rgba(255, 255, 255, 0.05)', overflow: 'hidden', position: 'relative'
+                width: '100%', height: '12px', borderRadius: '6px', backgroundColor: 'var(--panel-bg)', border: '1px solid var(--panel-border)', overflow: 'hidden', position: 'relative'
               }}
             >
               <div className={`progress-fill h-full rounded-full transition-all duration-300 ${totalTokens > BUDGET_LIMIT ? 'bg-red-500' : 'bg-cyan-400'}`}
@@ -287,10 +287,10 @@ export default function BudgetOptimizer({ onOptimizerSelect }) {
 
           {/* Average Composite Quality Score counter */}
           <div className="text-center px-6 border-x border-slate-800/80" style={{ textAlign: 'center', padding: '0 24px', borderLeft: '1px solid rgba(255,255,255,0.08)', borderRight: '1px solid rgba(255,255,255,0.08)' }}>
-            <div className="text-[10px] uppercase font-mono tracking-wider text-slate-500" style={{ fontSize: '0.62rem', fontFamily: 'JetBrains Mono', color: '#6b7280', letterSpacing: '0.5px' }}>
+            <div className="text-[10px] uppercase font-mono tracking-wider text-slate-500" style={{ fontSize: '0.62rem', fontFamily: 'JetBrains Mono', color: 'var(--text-muted)', letterSpacing: '0.5px' }}>
               Composite Quality
             </div>
-            <div className="text-2xl font-bold text-white font-mono mt-0.5" style={{ fontSize: '1.5rem', fontWeight: 'bold', fontFamily: 'JetBrains Mono', color: '#fff' }}>
+            <div className="text-2xl font-bold text-white font-mono mt-0.5" style={{ fontSize: '1.5rem', fontWeight: 'bold', fontFamily: 'JetBrains Mono', color: 'var(--text-primary)' }}>
               {averageScore.toFixed(3)}
             </div>
           </div>
@@ -364,8 +364,8 @@ export default function BudgetOptimizer({ onOptimizerSelect }) {
         {/* LEFT COLUMN: 14 Chunks Library */}
         <div className="glass-panel" style={{ padding: '20px', overflowY: 'auto' }}>
           <div className="flex justify-between items-center mb-4" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
-            <h4 className="font-bold text-slate-200" style={{ fontSize: '0.98rem', color: '#f3f4f6', margin: 0 }}>Available Chunks Library ({chunks.length})</h4>
-            <span className="text-[10px] font-mono text-slate-500" style={{ fontSize: '0.68rem', fontFamily: 'JetBrains Mono', color: '#6b7280' }}>Sorted by Composite Score</span>
+            <h4 className="font-bold text-slate-200" style={{ fontSize: '0.98rem', color: 'var(--text-primary)', margin: 0 }}>Available Chunks Library ({chunks.length})</h4>
+            <span className="text-[10px] font-mono text-slate-500" style={{ fontSize: '0.68rem', fontFamily: 'JetBrains Mono', color: 'var(--text-muted)' }}>Sorted by Composite Score</span>
           </div>
 
           {totalTokens > BUDGET_LIMIT && (
@@ -451,7 +451,7 @@ export default function BudgetOptimizer({ onOptimizerSelect }) {
                         borderColor: isSelected ? '#6366f1' : 'rgba(255, 255, 255, 0.15)',
                         backgroundColor: isSelected ? '#6366f1' : 'rgba(5, 7, 12, 0.8)',
                         display: 'flex', alignItems: 'center', justify: 'center',
-                        color: '#fff'
+                        color: 'var(--text-primary)'
                       }}
                     >
                       {isSelected && <Check className="w-3.5 h-3.5 stroke-[3]" />}
@@ -461,7 +461,7 @@ export default function BudgetOptimizer({ onOptimizerSelect }) {
                   {/* Chunk content details */}
                   <div className="flex-grow min-w-0" style={{ flexGrow: 1, minWidth: 0 }}>
                     <div className="flex justify-between items-start gap-2 mb-1" style={{ display: 'flex', justifyContent: 'space-between', gap: '8px', marginBottom: '4px' }}>
-                      <span className="font-semibold text-slate-200 text-xs" style={{ fontSize: '0.82rem', fontWeight: 600, color: '#e5e7eb', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', height: '2.4em', lineHeight: '1.2em' }}>
+                      <span className="font-semibold text-slate-200 text-xs" style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--text-primary)', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', height: '2.4em', lineHeight: '1.2em' }}>
                         {chunk.label}
                       </span>
                     </div>
@@ -479,11 +479,10 @@ export default function BudgetOptimizer({ onOptimizerSelect }) {
                       </span>
                       <span className="w-1 h-1 rounded-full bg-slate-700"></span>
                       
-                      <span className={`font-semibold border px-1.5 py-0.2 rounded ${srcTheme}`}
+                      <span className={`font-semibold px-1.5 py-0.5 rounded ${srcTheme}`}
                         style={{
-                          fontSize: '0.62rem', border: '1px solid', padding: '1px 4px', borderRadius: '4px',
-                          borderColor: srcTheme.includes('border') ? '' : 'rgba(255,255,255,0.08)',
-                          color: srcTheme.includes('text') ? '' : '#fff'
+                          fontSize: '0.62rem',
+                          borderRadius: '4px'
                         }}
                       >
                         {chunk.source}
@@ -510,7 +509,7 @@ export default function BudgetOptimizer({ onOptimizerSelect }) {
 
                   {/* Composite value bubble */}
                   <div className="flex-shrink-0 text-right font-mono" style={{ fontFamily: 'JetBrains Mono', textAlign: 'right' }}>
-                    <div className="text-[9px] text-slate-500 uppercase tracking-widest" style={{ fontSize: '0.58rem', color: '#6b7280' }}>Score</div>
+                    <div className="text-[9px] text-slate-500 uppercase tracking-widest" style={{ fontSize: '0.58rem', color: 'var(--text-muted)' }}>Score</div>
                     <div className="text-sm font-bold text-indigo-300" style={{ fontSize: '0.88rem', fontWeight: 'bold', color: '#a5b4fc' }}>
                       {chunk.compositeScore.toFixed(2)}
                     </div>
@@ -545,13 +544,13 @@ export default function BudgetOptimizer({ onOptimizerSelect }) {
                 </span>
               </div>
               
-              <table className="w-full text-xs text-left text-slate-400 border-collapse mb-4" style={{ width: '100%', fontSize: '0.75rem', color: '#9ca3af', borderCollapse: 'collapse', marginBottom: '16px' }}>
+              <table className="w-full text-xs text-left text-slate-400 border-collapse mb-4" style={{ width: '100%', fontSize: '0.75rem', color: 'var(--text-secondary)', borderCollapse: 'collapse', marginBottom: '16px' }}>
                 <thead>
                   <tr className="border-b border-slate-800" style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
-                    <th className="pb-2 font-semibold text-slate-200" style={{ paddingBottom: '8px', color: '#e5e7eb' }}>Method</th>
-                    <th className="pb-2 font-semibold text-slate-200 text-center" style={{ paddingBottom: '8px', color: '#e5e7eb', textAlign: 'center' }}>Quality</th>
-                    <th className="pb-2 font-semibold text-slate-200 text-center" style={{ paddingBottom: '8px', color: '#e5e7eb', textAlign: 'center' }}>Tokens</th>
-                    <th className="pb-2 font-semibold text-slate-200 text-center" style={{ paddingBottom: '8px', color: '#e5e7eb', textAlign: 'center' }}>Chunks</th>
+                    <th className="pb-2 font-semibold text-slate-200" style={{ paddingBottom: '8px', color: 'var(--text-primary)' }}>Method</th>
+                    <th className="pb-2 font-semibold text-slate-200 text-center" style={{ paddingBottom: '8px', color: 'var(--text-primary)', textAlign: 'center' }}>Quality</th>
+                    <th className="pb-2 font-semibold text-slate-200 text-center" style={{ paddingBottom: '8px', color: 'var(--text-primary)', textAlign: 'center' }}>Tokens</th>
+                    <th className="pb-2 font-semibold text-slate-200 text-center" style={{ paddingBottom: '8px', color: 'var(--text-primary)', textAlign: 'center' }}>Chunks</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -598,14 +597,14 @@ export default function BudgetOptimizer({ onOptimizerSelect }) {
 
           {/* VISUALIZER CHARTS PANEL */}
           <div className="glass-panel" style={{ padding: '20px', flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-            <h4 className="font-bold text-slate-200 mb-3" style={{ fontSize: '0.98rem', color: '#f3f4f6', marginBottom: '12px', margin: 0 }}>Allocation Breakdown</h4>
+            <h4 className="font-bold text-slate-200 mb-3" style={{ fontSize: '0.98rem', color: 'var(--text-primary)', marginBottom: '12px', margin: 0 }}>Allocation Breakdown</h4>
             
             {/* Horizontal visual allocation bar */}
             <div className="flex-1 flex flex-col justify-center min-h-[140px]" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
               {selectedIds.size === 0 ? (
                 <div className="text-center text-xs text-slate-500 p-6 border border-dashed border-slate-800 rounded-xl"
                   style={{
-                    textAlign: 'center', fontSize: '0.75rem', color: '#6b7280', padding: '20px', border: '1px dashed rgba(255, 255, 255, 0.08)', borderRadius: '10px'
+                    textAlign: 'center', fontSize: '0.75rem', color: 'var(--text-muted)', padding: '20px', border: '1px dashed rgba(255, 255, 255, 0.08)', borderRadius: '10px'
                   }}
                 >
                   Select context chunks on the left to review the relative budget allocation map.
@@ -615,7 +614,7 @@ export default function BudgetOptimizer({ onOptimizerSelect }) {
                   
                   {/* Proportional Recharts stacked bar */}
                   <div className="flex-col gap-1.5" style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                    <span className="text-[10px] font-mono text-slate-500" style={{ fontSize: '0.65rem', fontFamily: 'JetBrains Mono', color: '#6b7280' }}>Token Allocation Map (Recharts Stacked Bar)</span>
+                    <span className="text-[10px] font-mono text-slate-500" style={{ fontSize: '0.65rem', fontFamily: 'JetBrains Mono', color: 'var(--text-muted)' }}>Token Allocation Map (Recharts Stacked Bar)</span>
                     <div className="w-full bg-slate-950/80 rounded-lg p-1 border border-slate-800" style={{ width: '100%', height: '48px', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
                       <ResponsiveContainer width="100%" height="100%">
                         <BarChart
@@ -646,7 +645,7 @@ export default function BudgetOptimizer({ onOptimizerSelect }) {
                     {Array.from(new Set(chunks.filter(c => selectedIds.has(c.id)).map(c => c.category))).map((cat) => {
                       const color = categoryColors[cat] || '#6366f1';
                       return (
-                        <div key={cat} className="flex items-center gap-1 text-[9px] text-slate-400" style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.58rem', color: '#9ca3af' }}>
+                        <div key={cat} className="flex items-center gap-1 text-[9px] text-slate-400" style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.58rem', color: 'var(--text-secondary)' }}>
                           <div className="w-1.5 h-1.5 rounded-full" style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: color }} />
                           <span>{cat}</span>
                         </div>
@@ -668,9 +667,9 @@ export default function BudgetOptimizer({ onOptimizerSelect }) {
                   maxHeight: '200px'
                 }}
               >
-                <table className="w-full text-[10px] text-left text-slate-400 border-collapse" style={{ width: '100%', fontSize: '0.7rem', color: '#9ca3af', borderCollapse: 'collapse' }}>
+                <table className="w-full text-[10px] text-left text-slate-400 border-collapse" style={{ width: '100%', fontSize: '0.7rem', color: 'var(--text-secondary)', borderCollapse: 'collapse' }}>
                   <thead>
-                    <tr className="bg-slate-950/80 border-b border-slate-900 font-mono" style={{ backgroundColor: 'rgba(5, 7, 12, 0.5)', borderBottom: '1px solid rgba(255,255,255,0.05)', fontFamily: 'JetBrains Mono', color: '#6b7280' }}>
+                    <tr className="bg-slate-950/80 border-b border-slate-900 font-mono" style={{ backgroundColor: 'rgba(5, 7, 12, 0.5)', borderBottom: '1px solid rgba(255,255,255,0.05)', fontFamily: 'JetBrains Mono', color: 'var(--text-muted)' }}>
                       <th className="p-2 text-center" style={{ padding: '8px', width: '40px', textAlign: 'center' }}>Rank</th>
                       <th className="p-2" style={{ padding: '8px' }}>Chunk</th>
                       <th className="p-2 text-right" style={{ padding: '8px', textAlign: 'right' }}>Tokens</th>
@@ -687,12 +686,12 @@ export default function BudgetOptimizer({ onOptimizerSelect }) {
                         return (
                           <tr key={chunk.id} className="border-b border-slate-950/60" style={{ borderBottom: '1px solid rgba(255,255,255,0.02)' }}>
                             <td className="p-2 text-center font-mono text-slate-500" style={{ padding: '8px', textAlign: 'center', fontFamily: 'JetBrains Mono' }}>#{rankIndex}</td>
-                            <td className="p-2 font-medium text-slate-300 truncate max-w-[140px]" style={{ padding: '8px', color: '#d1d5db', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }} title={chunk.label}>
+                            <td className="p-2 font-medium text-slate-300 truncate max-w-[140px]" style={{ padding: '8px', color: 'var(--text-secondary)', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }} title={chunk.label}>
                               {chunk.label}
                             </td>
                             <td className="p-2 text-right font-mono" style={{ padding: '8px', textAlign: 'right', fontFamily: 'JetBrains Mono' }}>{chunk.tokens}</td>
-                            <td className="p-2 text-right font-mono text-indigo-400" style={{ padding: '8px', textAlign: 'right', fontFamily: 'JetBrains Mono', color: '#818cf8' }}>{chunk.compositeScore.toFixed(2)}</td>
-                            <td className="p-2 text-right font-mono text-cyan-400" style={{ padding: '8px', textAlign: 'right', fontFamily: 'JetBrains Mono', color: '#22d3ee' }}>{contributionPct}%</td>
+                            <td className="p-2 text-right font-mono text-indigo-400" style={{ padding: '8px', textAlign: 'right', fontFamily: 'JetBrains Mono', color: 'var(--neon-purple)' }}>{chunk.compositeScore.toFixed(2)}</td>
+                            <td className="p-2 text-right font-mono text-cyan-400" style={{ padding: '8px', textAlign: 'right', fontFamily: 'JetBrains Mono', color: 'var(--neon-cyan)' }}>{contributionPct}%</td>
                           </tr>
                         );
                       })}
@@ -721,7 +720,7 @@ export default function BudgetOptimizer({ onOptimizerSelect }) {
       }}>
         <div className="flex gap-3" style={{ display: 'flex', gap: '12px' }}>
           <div className="insight-indicator text-xs font-mono font-bold text-indigo-400 uppercase tracking-widest" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.72rem', color: '#6366f1', letterSpacing: '1px' }}>KEY INSIGHT</div>
-          <p className="insight-text text-sm leading-relaxed" style={{ fontSize: '0.88rem', color: '#d1d5db', margin: 0, lineHeight: '1.5' }}>
+          <p className="insight-text text-sm leading-relaxed" style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', margin: 0, lineHeight: '1.5' }}>
             Context selection isn't a search problem — it's an optimization problem. Greedy top-K selection by relevance alone is provably suboptimal when chunks have different token costs and freshness profiles.
           </p>
         </div>
