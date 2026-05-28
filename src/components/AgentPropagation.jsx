@@ -291,8 +291,14 @@ export default function AgentPropagation() {
                 className="w-full h-1.5 bg-slate-950 rounded-lg appearance-none cursor-pointer"
                 style={{ width: '100%', height: '6px', backgroundColor: 'var(--panel-bg)', borderRadius: '3px' }}
               />
-              <span className="text-[9px] text-slate-500 mt-1 block" style={{ fontSize: '0.58rem', color: 'var(--text-muted)', display: 'block', marginTop: '4px' }}>
-                {researchFreshness < 40 ? '⚠️ Silent Failure Active - Cascading down the agent pipeline' : 'Research nodes caching metrics match requirements'}
+              <span className="mt-1 block font-mono" style={{ 
+                fontSize: '0.68rem', 
+                color: researchFreshness < 40 ? 'var(--neon-red)' : 'var(--text-secondary)', 
+                display: 'block', 
+                marginTop: '4px',
+                opacity: researchFreshness < 40 ? 1 : 0.7
+              }}>
+                {researchFreshness < 40 ? '⚠️ Silent Failure Active - Cascading down the agent pipeline' : '✓ Research nodes caching metrics match requirements'}
               </span>
             </div>
 

@@ -69,14 +69,14 @@ export default function ObservabilityDashboard({ initialStats }) {
   const [closedLoopApplied, setClosedLoopApplied] = useState(false);
   const [dashTab, setDashTab] = useState('executive'); // 'executive' or 'deepdive'
 
-  useEffect(() => {
-    updateTimestamp();
-  }, []);
-
   const updateTimestamp = () => {
     const d = new Date();
     setTimestamp(d.toLocaleTimeString() + ' (Local GMT)');
   };
+
+  useEffect(() => {
+    updateTimestamp();
+  }, []);
 
   const handleSimulateRun = () => {
     const nextRun = runNumber + 1;
