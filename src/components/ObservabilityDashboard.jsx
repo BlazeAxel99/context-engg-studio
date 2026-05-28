@@ -47,7 +47,7 @@ const HEALTH_RADAR = [
 ];
 
 export default function ObservabilityDashboard({ initialStats }) {
-  const [runNumber, setRunNumber] = useState(1);
+  const [runNumber, setRunNumber] = useState(6);
   const [timestamp, setTimestamp] = useState('');
   
   // Dynamic metrics states
